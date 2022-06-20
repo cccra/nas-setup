@@ -32,7 +32,7 @@
 
 - name: Install github3 module
   pip:
-    name: 
+    name:
       - github3.py
 
 - name: Check latest neovim release
@@ -67,7 +67,7 @@
 
   - name: Add the yarn key
     apt_key:
-      url: https://dl.yarnpkg.com/debian/pubkey.gpg 
+      url: https://dl.yarnpkg.com/debian/pubkey.gpg
       state: present
 
   - name: Add the yarn repo
@@ -80,32 +80,32 @@
     package:
       name:
         - golang
-        - ninja-build 
-        - gettext 
-        - libtool 
-        - libtool-bin 
-        - autoconf 
-        - automake 
-        - cmake 
-        - g++ 
-        - pkg-config 
-        - unzip 
-        - curl 
+        - ninja-build
+        - gettext
+        - libtool
+        - libtool-bin
+        - autoconf
+        - automake
+        - cmake
+        - g++
+        - pkg-config
+        - unzip
+        - curl
         - doxygen
         - yarn
       state: present
 
   - name: Install python modules
     pip:
-      name: 
+      name:
         - setuptools
         - pynvim
 
   - name: Grab the latest release source
-    unarchive: 
+    unarchive:
       src: "https://github.com/neovim/neovim/archive/{{ neovim_release['tag'] }}.tar.gz"
       dest: /tmp
-      remote_src: true 
+      remote_src: true
 
   - name: Get the neovim folder
     find:
@@ -119,7 +119,7 @@
   - name: Compile and install neovim
     shell:
       cmd: cd {{ neovim_source.files[0].path }} && make install
-  
+
   - name: Clean up
     file:
       path: "{{ neovim_source.files[0].path }}"
