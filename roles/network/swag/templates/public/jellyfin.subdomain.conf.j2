@@ -1,9 +1,13 @@
 server {
-    {% include "nginx/internal.j2" %}
-    {% include "nginx/params.j2" %}
+    listen 443 ssl;
+    listen [::]:443 ssl;
 
     server_name {{ web_applications['jellyfin']['url'] }};
 
+    {% include "nginx/params.j2" %}
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 0;
 
     location / {
         {% include "nginx/cors.j2" %}
@@ -17,7 +21,7 @@ server {
         proxy_set_header Range $http_range;
         proxy_set_header If-Range $http_if_range;
     }
-    
+
     location ~ (/jellyfin)?/socket {
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
