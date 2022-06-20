@@ -1,0 +1,8 @@
+---
+container_name: lidarr
+
+url: "lidarr.{{ host_local }}"
+
+homer_category: media
+
+ip_address: "{{ swag_base }}.17"

@@ -1,0 +1,4 @@
+---
+container_name: flaresolver
+
+ip_address: "{{ swag_base }}.12"

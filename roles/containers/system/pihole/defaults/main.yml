@@ -1,0 +1,8 @@
+---
+container_name: pihole
+
+ip_address: "{{ swag_base }}.20"
+
+url: "pi.hole:81"
+
+homer_category: system
