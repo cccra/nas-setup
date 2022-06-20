@@ -2,7 +2,7 @@
 #
 # Tasks and roles for all hosts
 #
-- hosts: fleet
+- hosts: server
   gather_facts: no
 
   pre_tasks:
@@ -10,7 +10,7 @@
         tags:
             - port
 
-- hosts: fleet
+- hosts: server
   become: yes
 
   roles:
