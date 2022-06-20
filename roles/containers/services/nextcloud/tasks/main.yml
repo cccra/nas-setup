@@ -54,7 +54,7 @@
           'MYSQL_HOST': 'nextcloud-mariadb'
       volumes:
           - '{{ docker_dir }}/{{ container_name }}/data:/var/www/html'
-          #- '{{ mergerfs_root }}/Nextcloud/{{ username }}:/data/{{ username }}'
+          - '{{ mergerfs_root }}/Nextcloud/{{ username }}:/data/{{ username }}'
       restart_policy: unless-stopped
 
 - name: Schedule a Nextcloud library scan at midnight every day
@@ -63,4 +63,3 @@
       hour: '0'
       minute: '0'
       job: 'docker exec nextcloud sudo -u abc php8 /config/www/nextcloud/occ files:scan --all'
-

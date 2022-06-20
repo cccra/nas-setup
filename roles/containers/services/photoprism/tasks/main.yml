@@ -29,7 +29,7 @@
     image: photoprism/photoprism:latest
     networks:
       - name: photoprism_network
-      - name: swag_internal_macvlan
+      - name: swag_public_macvlan
         ipv4_address: "{{ ip_address }}"
     pull: yes
     security_opts:
