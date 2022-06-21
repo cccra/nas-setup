@@ -7,6 +7,14 @@
     group: "{{ username }}"
     mode: 0644
 
+- name: Install the VPN config
+  copy:
+    src: "files/vpnconf.ovpn"
+    dest: "{{ docker_dir }}/{{ container_name }}/config/openvpn/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
 - name: Make sure the Deluge container is created and running
   docker_container:
     name: "{{ container_name }}"
@@ -18,7 +26,7 @@
     privileged: yes
     sysctls:
       "net.ipv4.conf.all.src_valid_mark": "1"
-    capabilities: 
+    capabilities:
       - net_admin
     state: 'started'
     env:
