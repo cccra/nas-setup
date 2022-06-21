@@ -167,7 +167,7 @@
             - watchtower
             - containers
 
-      - role: network/pihole
+      - role: containers/system/pihole
         become: no
         tags:
           - pihole
@@ -198,7 +198,7 @@
             - containers
         when: enable_radarr | default(False)
 
-      - role: containers/media/liadrr
+      - role: containers/media/lidarr
         become: no
         tags:
             - liadrr
