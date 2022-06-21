@@ -1,11 +1,29 @@
 ---
-- name: Make sure that QuickSync packages are installed
+- name: Make sure that Nvidia drivers are installed
   become: yes
   package:
     name:
-      - vainfo
-      - intel-media-va-driver-non-free
-    state: present
+      - "nvidia-driver-{{ ansible_kernel }}"
+    state: latest
+
+- name: check if nvidia-docker is installed
+  command:
+    cmd: which nvidia-docker
+  register: nvidia-docker
+  changed_when: False
+  failed_when: False
+
+- name: Add Nvidia repository
+  shell:
+    cmd: "curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID) curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list"
+  when: nvidia-docker.rc == 1
+
+- name: install nvidia-docker
+  become: yes
+  package:
+    name:
+      - nvidia-docker2
+    state: latest
 
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
@@ -16,11 +34,13 @@
         ipv4_address: "{{ ip_address }}"
     pull: yes
     privileged: yes
-    devices:
-      - "/dev/dri/renderD128:/dev/dri/renderD128"
+    device_requests:
+      - driver: nvidia
+        count: -1
+        capabilities:
+          - gpu
     state: 'started'
     env:
-      "DOCKER_MODS": "linuxserver/mods:jellyfin-opencl-intel"
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
