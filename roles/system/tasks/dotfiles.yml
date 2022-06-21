@@ -14,8 +14,6 @@
       dest: '/home/{{ username }}/dotfiles'
       recursive: no
       force: yes
-  notify:
-      - install and update nvim plugins
 
 - name: Stow the dotfiles
   become_user: '{{ username }}'
