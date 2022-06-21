@@ -26,3 +26,10 @@
   notify:
       - install and update nvim plugins
   changed_when: stow_result.stdout != ""
+
+- name: Create Zsh cache dir
+  file:
+    path: "/home/{{ username }}/.cache/zsh"
+    state: directory
+    owner: '{{ username }}'
+    group: '{{ username }}'
