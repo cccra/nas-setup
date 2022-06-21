@@ -1,24 +1,26 @@
 ---
+- include_tasks: repo_arch.yml
+
 - name: Make sure that Nvidia drivers are installed
   become: yes
   package:
     name:
-      - "nvidia-driver-{{ ansible_kernel }}"
+      - "nvidia-driver-510"
     state: latest
 
-- name: check if nvidia-docker is installed
-  command:
-    cmd: which nvidia-docker
-  register: nvidia-docker
-  changed_when: False
-  failed_when: False
-
-- name: Add Nvidia repository
+- name: Add Nvidia GPG apt Key
+  become: yes
   shell:
-    cmd: "curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - distribution=$(. /etc/os-release;echo $ID$VERSION_ID) curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list"
-  when: nvidia-docker.rc == 1
+    cmd: "curl -sL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/nvidia.gpg"
 
-- name: install nvidia-docker
+- name: Add Nvidia Repository
+  become: yes
+  apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/nvidia.gpg] https://nvidia.github.io/libnvidia-container/stable/ubuntu18.04/$(ARCH) /"
+    state: present
+    filename: nvidia-docker
+
+- name: Install nvidia-docker
   become: yes
   package:
     name:
