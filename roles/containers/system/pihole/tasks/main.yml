@@ -29,7 +29,7 @@
       "TZ": "{{ timezone }}"
       "WEBPASSWORD": "{{ pihole_password }}"
       "REV_SERVER": "true"
-      "REV_SERVER_DOMAIN": "box"
+      "REV_SERVER_DOMAIN": "gillick.xyz"
       "REV_SERVER_TARGET": "{{ lan_gateway }}"
       "REV_SERVER_CIDR": "{{ lan_network }}"
       "DNS1": "127.0.0.1#5335" # Hardcoded to our Unbound server
