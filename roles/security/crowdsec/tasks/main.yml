@@ -1,2 +1,65 @@
+---
 - include_tasks: repo_arch.yml
-- include_tasks: crowdsec.yml
+
+- name: Add Crowdsec GPG apt Key
+  become: yes
+  shell:
+    cmd: "curl -sL https://packagecloud.io/crowdsec/crowdsec/gpgkey | gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/crowdsec.gpg"
+
+- name: Add Crowdsec Repository
+  apt_repository:
+    repo: "deb [arch={{ repo_arch }} signed-by=/etc/apt/trusted.gpg.d/crowdsec.gpg] https://packagecloud.io/crowdsec/crowdsec/{{ ansible_facts['distribution'] | lower }} {{ ansible_lsb['codename'] }} main"
+    state: present
+
+- name: Update apt and install Crowdsec and Prometheus
+  apt:
+    update_cache: yes
+    name:
+      - crowdsec
+      - crowdsec-firewall-bouncer-iptables
+      - prometheus
+    state: latest
+
+- name: cscli hub update
+  command:
+    cmd: cscli hub update
+  changed_when: false
+
+- name: Install the necessary collections
+  command:
+    cmd: "sudo cscli collections install crowdsecurity/{{ item }}"
+  with_items:
+    - nginx
+    - sshd
+    - linux
+    - iptables
+  register: collections_install_result
+  changed_when: "'overwrite' not in collections_install_result.stderr"
+
+- name: Enable the Prometheus endpoint
+  lineinfile:
+    path: "/etc/crowdsec/config.yaml"
+    line: "  enabled: true"
+    search_string: "enabled: false"
+    insertafter: "^prometeus:.*$"
+  notify:
+    - Restart prometheus
+    - Restart crowdsec
+
+- name: Increase ban time
+  replace:
+    path: "/etc/crowdsec/profiles.yaml"
+    regexp: 'duration: [0-9]h'
+    replace: 'duration: 999h'
+  notify:
+    - Restart crowdsec
+
+- name: Start and enable Crowdsec services
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  with_items:
+      - crowdsec
+      - crowdsec-firewall-bouncer
+      - prometheus
