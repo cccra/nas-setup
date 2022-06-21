@@ -4,9 +4,23 @@
     name: python3-pip
     state: present
 
-- name: Install the Xresources parser
-  pip:
-    name: xparser
+# - name: Install the Xresources parser
+#   pip:
+#     name: xparser
+
+- name: Clone the Xresources parser repo
+  become_user: '{{ username }}'
+  git:
+    repo: https://github.com/cccra/xparser.git
+    dest: '/home/{{ username }}/xparser'
+    recursive: no
+    force: yes
+
+- name: Install Xresources parser
+  become_user: '{{ username }}'
+  shell:
+    cmd: pip install .
+    chdir: '/home/{{ username }}/xparser'
 
 - name: Install the Xresources file
   copy:
