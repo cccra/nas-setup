@@ -2,7 +2,7 @@
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "ghcr.io/linuxserver/lidarr"
+    image: "ghcr.io/linuxserver/lidarr:latest"
     pull: yes
     networks:
       - name: swag_public_macvlan
