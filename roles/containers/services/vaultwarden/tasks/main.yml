@@ -1,5 +1,5 @@
 ---
-    
+
 - name: Make sure the Vaultwarden container is created and running
   docker_container:
     name: 'vaultwarden'
@@ -12,7 +12,7 @@
       WEBSOCKET_ENABLED: "true"
       INVITATIONS_ALLOWED: "false"
       SIGNUPS_ALLOWED: "false"
-      DOMAIN: "https://{{ subdomains['vaultwarden'] }}.{{ host }}"
+      DOMAIN: "https://{{ url }}"
       LOG_FILE: "/data/vaultwarden.log"
       TZ: "{{ timezone }}"
     volumes:

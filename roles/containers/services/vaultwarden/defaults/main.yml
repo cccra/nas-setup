@@ -1,6 +1,6 @@
 ---
 container_name: vaultwarden
 
-url: "{{ subdomains['vaultwarden'] }}.{{ host }}"
+url: "vaultwarden.{{ host }}"
 
 dashboard_name: Vaultwarden

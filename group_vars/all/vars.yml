@@ -82,8 +82,6 @@ spindown_time: 600 # in seconds
 
 colorscheme: nord
 
-subdomains: { 'nextcloud': 'nextcloud', 'vaultwarden': 'vaultwarden' }
-
 #
 # Packages
 #
