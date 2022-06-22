@@ -1,16 +1,18 @@
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+    listen 443 ssl https2;
+    listen [::]:443 ssl https2;
 
     server_name {{ web_applications['jellyfin']['url'] }};
 
     {% include "nginx/params.j2" %}
+
+
     include /config/nginx/ssl.conf;
 
     client_max_body_size 0;
 
     location / {
-        {% include "nginx/cors.j2" %}
+{% include "nginx/cors.j2" %}
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, HEAD';
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
