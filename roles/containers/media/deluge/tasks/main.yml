@@ -32,8 +32,10 @@
     env:
       "VPN_ENABLED": "yes"
       "VPN_PROV": custom
-      "VPN_CLIENT": "wireguard"
-      "ENABLE_PRIVOXY": "yes"
+      "VPN_CLIENT": "openvpn"
+      "ENABLE_PRIVOXY": "no"
+      "VPN_USER": "{{ vpn_username }}"
+      "VPN_PASS": "{{ vpn_password }}"
       "NAME_SERVERS": "{{ ','.join(dns_nameservers) }}"
       "LAN_NETWORK": "172.20.0.0/16, {{ lan_network }}"
       "DELUGE_DAEMON_LOG_LEVEL": "info"
@@ -47,7 +49,7 @@
       - "{{ docker_dir }}/{{ container_name }}/data:/data"
       - "{{ docker_dir }}/{{ container_name }}/config:/config"
       - "{{ docker_dir }}/{{ container_name }}/iptable.sh:/root/iptable.sh"
-      - "{{ mergerfs_root }}/Downloads:/home/nobody/Downloads"
+      - "{{ mergerfs_root }}:/tank"
       - "{{ mergerfs_root }}/Backups/Linux:/.linux"
       - "/etc/localtime:/etc/localtime:ro"
     restart_policy: unless-stopped
