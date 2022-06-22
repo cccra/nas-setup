@@ -27,6 +27,13 @@
       - nvidia-docker2
     state: latest
 
+- name: Increase max_user_watches for automatic import
+  become: yes
+  blockinfile:
+    path: /etc/sysctl.conf
+    marker: "# {mark} ANSIBLE MANAGED BLOCK"
+    block: fs.inotify.max_user_watches=3276800
+
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
