@@ -3,6 +3,4 @@ container_name: vaultwarden
 
 url: "{{ subdomains['vaultwarden'] }}.{{ host }}"
 
-homer_category: services
-
 dashboard_name: Vaultwarden
