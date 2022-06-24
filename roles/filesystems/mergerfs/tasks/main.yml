@@ -16,5 +16,4 @@
     name: "uncache the mergerfs pool"
     minute: "0"
     hour: "7"
-    weekday: "1-6"
-    job: "/usr/local/bin/mergerfs-uncache"
+    job: "/usr/local/bin/mergerfs-uncache -s /mnt/storage_cache -d /mnt/storage_slow -t 50"
