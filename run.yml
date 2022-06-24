@@ -51,6 +51,7 @@
             - ntp
 
       - role: linux-system-roles.cockpit
+        become: yes
         tags:
             - cockpit
         when: enable_cockpit | default(False)
