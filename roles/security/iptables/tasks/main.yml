@@ -72,7 +72,7 @@
   when: (enable_bunkerized_nginx | default(False)) or (enable_swag | default(False))
 
 - name: Allow IKEv2
-  ansible.builtin.iptables:
+  iptables:
     chain: INPUT
     protocol: udp
     destination_ports:
