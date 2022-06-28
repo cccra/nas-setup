@@ -29,6 +29,20 @@
         tags:
             - security
 
+      # Filesystems
+      #
+      - role: filesystems/mergerfs
+        become: yes
+        tags:
+            - mergerfs
+        when: enable_nas_stuff | default(False)
+
+      - role: filesystems/mounts
+        become: yes
+        tags:
+            - mounts
+        when: enable_nas_stuff | default(False)
+
       - role: docker
         tags:
             - docker
@@ -110,20 +124,6 @@
         when: enable_adguard | default(False)
 
       #
-      # Filesystems
-      #
-      - role: filesystems/mergerfs
-        become: yes
-        tags:
-            - mergerfs
-        when: enable_nas_stuff | default(False)
-
-      - role: filesystems/mounts
-        become: yes
-        tags:
-            - mounts
-        when: enable_nas_stuff | default(False)
-
       - role: filesystems/hd-idle
         become: yes
         tags:
@@ -204,7 +204,7 @@
         tags:
             - liadrr
             - containers
-        when: enable_liadrr | default(False)
+        when: enable_lidarr | default(False)
 
       - role: containers/media/jellyfin
         become: no
