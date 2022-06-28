@@ -17,7 +17,7 @@
       owner: root
       group: root
       mode: 0755
-  
+
   - name: Install github3 module
     pip:
       name: github3.py
@@ -30,16 +30,16 @@
     register: release
 
   - name: Grab the latest amd64 deb package
-    get_url: 
+    get_url:
       url: "https://github.com/adelolmo/hd-idle/releases/download/{{ release['tag'] }}/hd-idle_{{ release['tag'] | regex_replace('^v','') }}_amd64.deb"
       dest: /tmp/hd-idle
 
-  - name: Install the deb package 
+  - name: Install the deb package
     shell:
       cmd: cd /tmp/hd-idle && dpkg -i hd-idle*.deb
 
 - name: Install the hd-idle configuration file
-  template: 
+  template:
     src: hd-idle.default.j2
     dest: /etc/default/hd-idle
     owner: root
@@ -52,4 +52,3 @@
     state: started
     enabled: yes
     masked: no
-  
