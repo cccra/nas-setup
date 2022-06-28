@@ -15,5 +15,5 @@
 - include_tasks: docker.yml
   when: enable_swag_public | default(False) or enable_swag_internal | default(False)
 
-- include_tasks: cloudflare_internal_dns.yml
-  when: enable_swag_internal | default(False)
+# - include_tasks: cloudflare_internal_dns.yml
+#   when: enable_swag_internal | default(False)
