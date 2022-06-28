@@ -66,15 +66,13 @@
       - skip_ansible_lint
 
   - name: Add Yarn GPG apt Key
-    ansible.builtin.get_url:
-      url: https://dl.yarnpkg.com/debian/pubkey.gpg
-      dest: /etc/apt/trusted.gpg.d/yarn.gpg
-      mode: '0644'
-      force: true
+    become: yes
+    shell:
+      cmd: "curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/yarn.gpg"
 
-  - name: Add the yarn repo
+  - name: Add the Yarn Repository
     apt_repository:
-      repo: "deb [arch={{ repo_arch }} signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main"
+      repo: "deb [signed-by=/etc/apt/trusted.gpg.d/yarn.gpg] https://dl.yarnpkg.com/debian/ stable main"
       state: present
       filename: yarn
 
