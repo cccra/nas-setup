@@ -65,3 +65,12 @@
     state: mounted
     passno: "2"
   when: enable_timemachine | default(False)
+
+- name: Set owner and permissions of storage
+  file:
+    dest: "{{ mergerfs_root }}"
+    state: directory
+    owner: "{{ username }}"
+    group: "users"
+    mode: "ug=rwx,o=rx,g+s"
+    recurse: yes
