@@ -1,5 +1,5 @@
 container_name: flame
 
-url: "{{ host_local }}"
+url: "flame.{{ host_local }}"
 
 ip_address: "{{ swag_base }}.4"
