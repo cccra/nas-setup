@@ -44,6 +44,11 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
     block: fs.inotify.max_user_watches=3276800
 
+- name: Upgrade python docker via pip
+  pip:
+    name: docker
+    state: latest
+
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
@@ -66,10 +71,12 @@
       "VERSION": "latest"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "{{ mergerfs_root }}/Media/TV:/data/TV"
       - "{{ mergerfs_root }}_slow/Media/Transcodes:/config/data/transcodes"
       - "{{ mergerfs_root }}/Media/Metadata:/metadata"
       - "{{ mergerfs_root }}/Media/Cache:/data/Cache"
       - "{{ mergerfs_root }}/Media/Movies:/data/Movies"
+      - "{{ mergerfs_root }}/Media/Music:/data/Music"
+      - "{{ mergerfs_root }}/Media/TV:/data/TV"
+      - "{{ mergerfs_root }}/Media/Personal:/data/Personal"
       - "/etc/localtime:/etc/localtime:ro"
     restart_policy: unless-stopped
