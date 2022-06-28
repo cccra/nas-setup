@@ -73,3 +73,12 @@
     user: root
     env: yes
     job: ""
+
+- name: Disable sleep/hibernate/suspend
+  systemd:
+    name: sleep.target
+    name: suspend.target
+    name: suspend-then-hibernate.target
+    name: hibernate.target
+    name: hybrid-sleep.target
+    masked: yes
