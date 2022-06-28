@@ -109,10 +109,12 @@
       paths:
         - "{{ docker_dir }}/"
       file_type: directory
+      depth: 2
     register: persistent_data_find
     when: "enable_nas_stuff | default(False)"
 
   - name: Create the persistent data folder on the remote machine
+    become: yes
     file:
       dest: "{{ docker_dir }}"
       state: directory
@@ -124,12 +126,12 @@
 
   - name: Restore the "{{ docker_dir }}" folder from the MergerFS array
     synchronize:
-      src: "{{ mergerfs_root }}/docker_data/data"
+      src: "{{ mergerfs_root }}/docker_data/"
       dest: "{{ docker_dir }}/"
       delete: true
-      recurse: yes
+      recursive: yes
     delegate_to: "{{ inventory_hostname }}"
-    when: not persistent_data.stat.exists
+    when: persistent_data_find.matched < 10 or not persistent_data.stat.exists
 
 - name: Chmod the data folder
   become: yes
