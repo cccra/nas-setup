@@ -1,8 +1,0 @@
----
-container_name: plex
-
-url: "plex.{{ host_local }}"
-
-ip_address: "{{ swag_base }}.11"
-
-dashboard_name: Plex
