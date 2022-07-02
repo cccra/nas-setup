@@ -76,9 +76,11 @@
 
 - name: Disable sleep/hibernate/suspend
   systemd:
-    name: sleep.target
-    name: suspend.target
-    name: suspend-then-hibernate.target
-    name: hibernate.target
-    name: hybrid-sleep.target
+    name: "{{ item }}"
     masked: yes
+    with_items:
+    - sleep.target
+    - suspend.target
+    - suspend-then-hibernate.target
+    - hibernate.target
+    - hybrid-sleep.target
