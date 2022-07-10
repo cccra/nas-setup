@@ -7,9 +7,10 @@
 
 - name: Install the uncaching script
   template:
-      src: mergerfs-uncache.j2
-      dest: /usr/local/bin/mergerfs-uncache
-      mode: 0775
+    src: mergerfs-uncache.j2
+    dest: /usr/local/bin/mergerfs-uncache
+    mode: 0775
+  when: cache_disks[0] is defined
 
 - name: Move data from cache drive to slow pool as it gets full
   cron:
@@ -17,3 +18,4 @@
     minute: "0"
     hour: "7"
     job: "/usr/local/bin/mergerfs-uncache -s /mnt/storage_cache -d /mnt/storage_slow -t 50"
+  when: cache_disks[0] is defined

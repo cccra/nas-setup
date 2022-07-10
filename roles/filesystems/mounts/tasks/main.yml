@@ -29,20 +29,20 @@
   with_items: "{{ parity_disks }}"
   when: parity_disks[0] is defined
 
-- name: Mount the mergerfs cached array
-  mount:
-    name: "{{ mergerfs_root }}"
-    src: /mnt/storage_cache:/mnt/storage_slow
-    opts: category.create=lfs,defaults,allow_other,moveonenospc=1,minfreespace=50G,fsname=mergerfs,uid=1000,gid=1000
-    fstype: fuse.mergerfs
-    state: mounted
-  when: disks[0] is defined
+# - name: Mount the mergerfs cached array
+#   mount:
+#     name: "{{ mergerfs_root }}"
+#     src: /mnt/storage_cache:/mnt/storage_slow
+#     opts: category.create=lfs,defaults,allow_other,moveonenospc=1,minfreespace=50G,fsname=mergerfs,uid=1000,gid=1000
+#     fstype: fuse.mergerfs
+#     state: mounted
+#   when: disks[0] is defined
 
 - name: Mount the mergerfs array
   mount:
-    name: "{{ mergerfs_root }}_slow"
+    name: "{{ mergerfs_root }}"
     src: /mnt/data*
-    opts: category.create=mfs,defaults,allow_other,moveonenospc=1,minfreespace=500G,fsname=mergerfs_slow,uid=1000,gid=1000
+    opts: category.create=lfs,defaults,allow_other,moveonenospc=1,minfreespace=50G,fsname=mergerfs,uid=1000,gid=1000
     fstype: fuse.mergerfs
     state: mounted
   when: disks[0] is defined
