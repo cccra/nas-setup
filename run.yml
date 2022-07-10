@@ -162,6 +162,20 @@
             - containers
         when: enable_jackett | default(False)
 
+      - role: containers/media/flaresolverr
+        become: no
+        tags:
+          - flaresolverr
+          - containers
+        when: enable_flaresolverr | default(False)
+
+      - role: containers/media/unpackerr
+        become: no
+        tags:
+            - unpackerr
+            - containers
+        when: enable_unpackerr | default(False)
+
       - role: containers/system/watchtower
         become: no
         tags:
