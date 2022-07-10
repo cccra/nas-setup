@@ -1,0 +1,6 @@
+---
+container_name: unpackerr
+
+url: "unpackerr.{{ host_local }}"
+
+ip_address: "{{ swag_base }}.26"

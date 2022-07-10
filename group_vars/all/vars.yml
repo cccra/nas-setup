@@ -189,6 +189,10 @@ enable_openbooks: false
 
 enable_jackett: false
 
+enable_flaresolverr: false
+
+enable_unpackerr: false
+
 # Public-facing services
 
 enable_nextcloud: false
