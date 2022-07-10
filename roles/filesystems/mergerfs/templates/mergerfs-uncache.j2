@@ -133,7 +133,7 @@ if __name__ == "__main__":
         subprocess.call(
             [
                 "rsync",
-                "-axqHAXWESR",
+                "-axqHAXWES",
                 "--preallocate",
                 "--remove-source-files",
                 f"{cache_path}/./{c_path.relative_to(cache_path)}",
