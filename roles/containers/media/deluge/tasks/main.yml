@@ -33,7 +33,7 @@
       "VPN_ENABLED": "yes"
       "VPN_PROV": custom
       "VPN_CLIENT": "openvpn"
-      "ENABLE_PRIVOXY": "no"
+      "ENABLE_PRIVOXY": "yes"
       "VPN_USER": "{{ vpn_username }}"
       "VPN_PASS": "{{ vpn_password }}"
       "NAME_SERVERS": "{{ ','.join(dns_nameservers) }}"
