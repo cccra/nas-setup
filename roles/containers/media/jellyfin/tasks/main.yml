@@ -71,7 +71,7 @@
       "VERSION": "latest"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}:/config"
-      - "{{ mergerfs_root }}_slow/Media/Transcodes:/config/data/transcodes"
+      - "{{ mergerfs_root }}/Media/Transcodes:/config/data/transcodes"
       - "{{ mergerfs_root }}/Media/Metadata:/metadata"
       - "{{ mergerfs_root }}/Media/Cache:/data/Cache"
       - "{{ mergerfs_root }}/Media/Movies:/data/Movies"
