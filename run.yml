@@ -176,6 +176,13 @@
             - containers
         when: enable_unpackerr | default(False)
 
+      - role: containers/media/bazarr
+        become: no
+        tags:
+            - bazarr
+            - containers
+        when: enable_bazarr | default(False)
+
       - role: containers/system/watchtower
         become: no
         tags:

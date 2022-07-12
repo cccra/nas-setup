@@ -193,6 +193,8 @@ enable_flaresolverr: false
 
 enable_unpackerr: false
 
+enable_bazarr: false
+
 # Public-facing services
 
 enable_nextcloud: false
