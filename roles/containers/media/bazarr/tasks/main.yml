@@ -15,4 +15,5 @@
     volumes:
       - "/etc/localtime:/etc/localtime"
       - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ mergerfs_root }}:/tank"
     restart_policy: unless-stopped
