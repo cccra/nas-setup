@@ -22,6 +22,5 @@
       "UN_LIDARR_0_API_KEY": "{{ lidarr_api }}"
     volumes:
       - "/etc/localtime:/etc/localtime"
-      - "{{ docker_dir }}/{{ container_name }}:/config"
       - "{{ mergerfs_root }}/Downloads:/downloads"
     restart_policy: unless-stopped
