@@ -1,0 +1,6 @@
+---
+container_name: ombi
+
+url: "request.{{ host_local }}"
+
+ip_address: "{{ swag_base }}.28"

@@ -234,6 +234,13 @@
             - containers
         when: enable_jellyfin | default(False)
 
+      - role: containers/media/ombi
+        become: no
+        tags:
+            - ombi
+            - containers
+        when: enable_ombi | default(False)
+
       #
       # Services
       #

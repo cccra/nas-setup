@@ -171,6 +171,8 @@ enable_plex: false
 
 enable_jellyfin: false
 
+enable_ombi: false
+
 enable_photoprism: false
 
 enable_booksonic: false
