@@ -5,6 +5,7 @@
     image: "mysql"
     networks:
       - name: swag_public_macvlan
+        ipv4_address: "{{ ip_address_mysql }}"
     env:
       'MYSQL_ROOT_PASSWORD': '{{ mysql_root_password }}'
     volumes:

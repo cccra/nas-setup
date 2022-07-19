@@ -5,3 +5,7 @@ mysql_user: "nextcloud"
 container_name: nextcloud
 
 url: "nextcloud.{{ host }}"
+
+ip_address: "{{ swag_base }}.2"
+
+ip_address_mysql: "{{ swag_base }}.6"

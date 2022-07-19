@@ -9,7 +9,6 @@
     image: 'mariadb:latest'
     pull: yes
     networks:
-      - name: swag_public_macvlan
       - name: nextcloud_network
     command: '--transaction-isolation=READ-COMMITTED --binlog-format=ROW --skip-innodb-read-only-compressed --innodb-read-only-compressed=OFF'
     state: 'started'
@@ -42,6 +41,7 @@
     pull: yes
     networks:
       - name: swag_public_macvlan
+        ipv4_address: '{{ ip_address }}'
       - name: nextcloud_network
     state: 'started'
     env:

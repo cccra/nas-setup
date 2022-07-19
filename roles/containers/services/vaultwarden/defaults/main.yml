@@ -4,3 +4,5 @@ container_name: vaultwarden
 url: "vaultwarden.{{ host }}"
 
 dashboard_name: Vaultwarden
+
+ip_address: "{{ swag_base }}.3"
