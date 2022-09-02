@@ -21,7 +21,7 @@
     volumes:
       - "{{ docker_dir }}/{{ container_name }}/mariadb/mysql:/var/lib/mysql"
     restart_policy: unless-stopped
-    
+
 
 - name: Make sure the Photoprism container is created and running
   docker_container:
@@ -54,20 +54,20 @@
       "PHOTOPRISM_DATABASE_NAME": "{{ mysql_db }}"
       "PHOTOPRISM_DATABASE_USER": "{{ mysql_user }}"
       "PHOTOPRISM_DATABASE_PASSWORD": "{{ mysql_password }}"
-      "PHOTOPRISM_DISABLE_CHOWN": "false"              
-      "PHOTOPRISM_DISABLE_BACKUPS": "true"            
-      "PHOTOPRISM_DISABLE_WEBDAV": "false"             
+      "PHOTOPRISM_DISABLE_CHOWN": "false"
+      "PHOTOPRISM_DISABLE_BACKUPS": "true"
+      "PHOTOPRISM_DISABLE_WEBDAV": "false"
       "PHOTOPRISM_DETECT_NSFW": "true"
       "PHOTOPRISM_UPLOAD_NSFW": "false"
       "PHOTOPRISM_THUMB_FILTER": "lanczos"
       "PHOTOPRISM_THUMB_UNCACHED": "true"
       "PHOTOPRISM_THUMB_SIZE": "2048"
-      "PHOTOPRISM_THUMB_SIZE_UNCACHED": "7680"           
-      "PHOTOPRISM_JPEG_SIZE": "7680" 
+      "PHOTOPRISM_THUMB_SIZE_UNCACHED": "7680"
+      "PHOTOPRISM_JPEG_SIZE": "7680"
       "PHOTOPRISM_JPEG_QUALITY": "92"
-      "TF_CPP_MIN_LOG_LEVEL": "0" 
-      "PHOTOPRISM_FFMPEG_ENCODER": "h264_qsv"        
-      "PHOTOPRISM_INIT": "tensorflow-amd64-avx2" 
+      "TF_CPP_MIN_LOG_LEVEL": "0"
+      "PHOTOPRISM_FFMPEG_ENCODER": "h264_qsv"
+      "PHOTOPRISM_INIT": "tensorflow-amd64-avx2"
     working_dir: "/photoprism"
     devices:
       - "/dev/dri/renderD128:/dev/dri/renderD128" # Intel GPU
@@ -81,4 +81,4 @@
     name: Scan the PhotoPrism library
     hour: "1"
     minute: "0"
-    job: "/usr/bin/docker exec photoprism /photoprism/bin/photoprism index"
+    job: "/usr/bin/docker exec photoprism /opt/photoprism/bin/photoprism index"
