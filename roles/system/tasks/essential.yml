@@ -78,9 +78,9 @@
   systemd:
     name: "{{ item }}"
     masked: yes
-    with_items:
-    - sleep.target
-    - suspend.target
-    - suspend-then-hibernate.target
-    - hibernate.target
-    - hybrid-sleep.target
+  with_items:
+  - sleep.target
+  - suspend.target
+  - suspend-then-hibernate.target
+  - hibernate.target
+  - hybrid-sleep.target
