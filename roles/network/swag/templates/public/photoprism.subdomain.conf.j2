@@ -1,7 +1,13 @@
 server {
-    {% include "nginx/internal.j2" %}
+    listen 443 ssl;
+    listen [::]:443 ssl;
+
     {% include "nginx/params.j2" %}
     server_name {{ web_applications['photoprism']['url'] }};
+
+    include /config/nginx/ssl.conf;
+
+    client_max_body_size 0;
 
     location / {
         {% include "nginx/cors.j2" %}

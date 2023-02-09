@@ -41,7 +41,7 @@
       - "{{ docker_dir }}/{{ container_name }}/dnmasq-unbound:/etc/dnsmasq.d"
       - "{{ docker_dir }}/{{ container_name }}/unbound.conf.d/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf"
     ports:
-      - "81:80/tcp"
+      - "80:80/tcp"
       - "{{ lan_address }}:53:53/tcp"
       - "{{ lan_address }}:53:53/udp"
     restart_policy: unless-stopped
