@@ -14,7 +14,7 @@
 - name: Create a public macvlan network
   when: enable_swag_public | default(False)
   docker_network:
-      name: swag_public_macvlan
+      name: app_network
       driver: macvlan
       driver_options:
           parent: '{{ dmz_interface }}'

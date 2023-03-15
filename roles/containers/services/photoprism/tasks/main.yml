@@ -29,8 +29,7 @@
     image: photoprism/photoprism:latest
     networks:
       - name: photoprism_network
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address }}"
+      - name: app_network
     pull: yes
     security_opts:
       - seccomp:unconfined
@@ -46,7 +45,6 @@
       "PHOTOPRISM_ADMIN_PASSWORD": "{{ photoprism_password }}"
       "PHOTOPRISM_SITE_URL": "https://{{ url }}:443"
       "PHOTOPRISM_EXPERIMENTAL": "false"
-      "PHOTOPRISM_HTTP_HOST": "{{ ip_address }}"
       "PHOTOPRISM_HTTP_PORT": "2342"
       "PHOTOPRISM_HTTP_COMPRESSION": "gzip"
       "PHOTOPRISM_DATABASE_DRIVER": "mysql"

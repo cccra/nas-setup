@@ -1,7 +1,7 @@
 ---
 - name: Chown the repo
   file:
-      path: '/home/{{ username }}/dotfiles'
+      path: '/home/{{ username }}/.local/src/dotfiles'
       recurse: yes
       state: directory
       owner: '{{ username }}'
@@ -11,15 +11,22 @@
   become_user: '{{ username }}'
   git:
       repo: '{{ dotfiles_repo }}'
-      dest: '/home/{{ username }}/dotfiles'
+      dest: '/home/{{ username }}/.local/src/dotfiles'
       recursive: no
       force: yes
+
+- name: Create src dir
+  file:
+    path: "/home/{{ username }}/.local/src"
+    state: directory
+    owner: '{{ username }}'
+    group: '{{ username }}'
 
 - name: Stow the dotfiles
   become_user: '{{ username }}'
   shell:
       cmd: stow -v */
-      chdir: '/home/{{ username }}/dotfiles'
+      chdir: '/home/{{ username }}/.local/src/dotfiles'
   register: stow_result
   notify:
       - install and update nvim plugins

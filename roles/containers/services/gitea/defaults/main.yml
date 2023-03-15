@@ -1,0 +1,11 @@
+mysql_db: "gitea_db"
+
+mysql_user: "gitea"
+
+container_name: gitea
+
+url: "gitea.{{ host }}"
+
+ip_address: "{{ swag_base }}.2"
+
+ip_address_mysql: "{{ swag_base }}.6"

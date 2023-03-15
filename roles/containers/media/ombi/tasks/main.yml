@@ -4,8 +4,7 @@
     name: ombi-mysql
     image: "mysql"
     networks:
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address_mysql }}"
+      - name: app_network
     env:
       'MYSQL_ROOT_PASSWORD': '{{ mysql_root_password }}'
     volumes:
@@ -27,8 +26,7 @@
     image: "ghcr.io/linuxserver/ombi:latest"
     pull: yes
     networks:
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address }}"
+      - name: app_network
     state: 'started'
     env:
       "PUID": "{{ guid }}"
@@ -38,5 +36,3 @@
       - "/etc/localtime:/etc/localtime"
       - "{{ docker_dir }}/{{ container_name }}:/config"
     restart_policy: unless-stopped
-    ports:
-      - 8989:8989

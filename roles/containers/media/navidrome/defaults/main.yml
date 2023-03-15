@@ -1,0 +1,4 @@
+---
+container_name: navidrome
+
+url: "navidrome.{{ host_local }}"

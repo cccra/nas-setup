@@ -1,5 +1,5 @@
 [DEFAULT]
-banaction = cloudflare 
+banaction = cloudflare
             iptables-allports
 bantime  = -1
 findtime  = 600
@@ -18,10 +18,6 @@ filter = sshd
 [{{ name }}]
 enabled  = true
 port     = http,https,{{ security_ssh_port }}
-{% if 'endlessh' in name %}
-action = %(action_)s
-maxretry = 0
-{% endif %}
 filter   = {{ name }}
 logpath  = %({{ name }}_log)s
 

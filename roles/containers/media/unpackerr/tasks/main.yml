@@ -7,8 +7,7 @@
     image: "golift/unpackerr:latest"
     pull: yes
     networks:
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address }}"
+      - name: app_network
     state: 'started'
     env:
       "PUID": "{{ guid }}"

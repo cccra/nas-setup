@@ -21,8 +21,7 @@
     image: "binhex/arch-delugevpn:latest"
     pull: yes
     networks:
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address }}"
+      - name: app_network
     privileged: yes
     sysctls:
       "net.ipv4.conf.all.src_valid_mark": "1"

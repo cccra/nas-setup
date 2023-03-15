@@ -1,31 +1,42 @@
 ---
 - include_tasks: repo_arch.yml
 
-- name: Make sure that Nvidia drivers are installed
-  become: yes
+- name: Make sure Nvidia drivers are installed
+  become: true
   package:
     name:
-      - "nvidia-driver-510"
+      - "nvidia-driver-525"
     state: latest
 
 - name: Add Nvidia GPG apt Key
-  become: yes
+  become: true
   shell:
-    cmd: "curl -sL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --batch --yes --dearmour -o /etc/apt/trusted.gpg.d/nvidia.gpg"
+    cmd: "curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | gpg --batch --yes --dearmour -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg"
 
 - name: Add Nvidia Repository
-  become: yes
+  become: true
   apt_repository:
-    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/nvidia.gpg] https://nvidia.github.io/libnvidia-container/stable/ubuntu18.04/$(ARCH) /"
+    repo: "deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://nvidia.github.io/libnvidia-container/stable/ubuntu18.04/$(ARCH) /"
     state: present
-    filename: nvidia-docker
+    filename: nvidia-container-toolkit
 
-- name: Install nvidia-docker
-  become: yes
+- name: Install nvidia-container-toolkit
+  become: true
   package:
     name:
-      - nvidia-docker2
+      - nvidia-container-toolkit
     state: latest
+
+- name: Configure docker to recognise nvidia containter
+  become: true
+  shell:
+    cmd: "sudo nvidia-ctk runtime configure --runtime=docker"
+
+- name: Restart docker
+  become: true
+  service:
+    name: docker
+    state: reloaded
 
 - name: Check if reboot required
   stat:
@@ -38,7 +49,7 @@
   when: reboot_required_file.stat.exists
 
 - name: Increase max_user_watches for automatic import
-  become: yes
+  become: true
   blockinfile:
     path: /etc/sysctl.conf
     marker: "# {mark} ANSIBLE MANAGED BLOCK"
@@ -52,12 +63,11 @@
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "ghcr.io/linuxserver/jellyfin"
+    image: "ghcr.io/linuxserver/jellyfin:nightly"
     networks:
-      - name: swag_public_macvlan
-        ipv4_address: "{{ ip_address }}"
-    pull: yes
-    privileged: yes
+      - name: app_network
+    pull: true
+    privileged: true
     device_requests:
       - driver: nvidia
         count: -1

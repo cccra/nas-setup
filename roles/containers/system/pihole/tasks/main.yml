@@ -19,6 +19,9 @@
     name: 'pihole'
     image: "cbcrowe/pihole-unbound"
     hostname: "{{ inventory_hostname }}"
+    networks:
+      - name: app_network
+        ipv4_address: 172.20.0.20
     domainname: "{{ host }}"
     pull: false
     state: 'started'
@@ -41,7 +44,7 @@
       - "{{ docker_dir }}/{{ container_name }}/dnmasq-unbound:/etc/dnsmasq.d"
       - "{{ docker_dir }}/{{ container_name }}/unbound.conf.d/pi-hole.conf:/etc/unbound/unbound.conf.d/pi-hole.conf"
     ports:
-      - "80:80/tcp"
+      - "82:80/tcp"
       - "{{ lan_address }}:53:53/tcp"
       - "{{ lan_address }}:53:53/udp"
     restart_policy: unless-stopped

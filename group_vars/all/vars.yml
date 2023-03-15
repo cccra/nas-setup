@@ -100,7 +100,6 @@ extra_packages:
     - lm-sensors
     - iotop
     - ncdu
-    - hddtemp
 
 #
 # Apt mirrors
@@ -171,6 +170,8 @@ enable_plex: false
 
 enable_jellyfin: false
 
+enable_navidrome: false
+
 enable_ombi: false
 
 enable_photoprism: false
@@ -198,6 +199,8 @@ enable_unpackerr: false
 enable_bazarr: false
 
 # Public-facing services
+
+enable_gitea: false
 
 enable_nextcloud: false
 

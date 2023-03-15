@@ -1,6 +1,6 @@
 # notthebee/infra
 
-An Ansible playbook that sets up an Ubuntu-based home media server/NAS with reasonable security, auto-updates, e-mail notifications for S.M.A.R.T. and Snapraid errors and dynamic DNS. 
+An Ansible playbook that sets up an Ubuntu-based home media server/NAS with reasonable security, auto-updates, e-mail notifications for S.M.A.R.T. and Snapraid errors and dynamic DNS.
 
 It assumes a fresh Ubuntu Server 20.04 install, access to a non-root user with sudo privileges and a public SSH key. This can be configured during the installation process.
 
@@ -51,9 +51,8 @@ The playbook is mostly being developed for personal use, so stuff is going to be
 ## Other features:
 * MergerFS with Snapraid
 * Samba
-* Fail2Ban for Nextcloud, Vaultwarden and endlessh with Cloudflare support
+* Fail2Ban for Nextcloud, Vaultwarden with Cloudflare support
 * CrowdSec with the iptables bouncer
-* endlessh
 
 ## Usage
 Install Ansible (macOS):
@@ -110,5 +109,3 @@ For consecutive runs, if you only want to update the Docker containers, you can 
 ```
 ansible-playbook run.yml --tags="port,containers"
 ```
-
-
