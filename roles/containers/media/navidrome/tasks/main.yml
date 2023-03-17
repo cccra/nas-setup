@@ -13,6 +13,6 @@
       "TZ": "{{ timezone }}"
     volumes:
       - "/etc/localtime:/etc/localtime"
-      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/{{ container_name }}:/data"
       - "{{ mergerfs_root }}/Media/Music:/music:ro"
     restart_policy: unless-stopped
