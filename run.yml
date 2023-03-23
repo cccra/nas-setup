@@ -224,7 +224,7 @@
       - role: containers/media/lidarr
         become: no
         tags:
-            - liadrr
+            - lidarr
             - containers
         when: enable_lidarr | default(False)
 

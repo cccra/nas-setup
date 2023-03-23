@@ -2,7 +2,7 @@
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "ghcr.io/linuxserver/lidarr:latest"
+    image: "youegraillot/lidarr-on-steroids"
     pull: yes
     networks:
       - name: app_network
@@ -13,6 +13,7 @@
       "TZ": "{{ timezone }}"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/{{ container_name }}-on-steroids:/config"
+      - "{{ docker_dir }}/deemix:/config_deemix"
       - "{{ mergerfs_root }}:/tank"
     restart_policy: unless-stopped
