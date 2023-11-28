@@ -5,9 +5,15 @@
 
 - name: Grab the latest Neovim release
   get_url:
-    url: "https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb"
-    dest: /tmp
+    url: "https://github.com/neovim/neovim/releases/download/stable/nvim.appimage"
+    dest: /usr/local/bin/nvim
 
-- name: Install neovim
+- name: Chmod nvim
   become: true
-  apt: deb="/tmp/nvim-linux64.deb"
+  file:
+    path: /usr/local/bin/nvim
+    state: file
+    mode: 0755
+    owner: root
+    group: root
+    recurse: no
