@@ -1,0 +1,5 @@
+container_name: invoiceninja
+
+url: "invoiceninja.{{ host }}"
+
+ip_address: "{{ swag_base }}.22"

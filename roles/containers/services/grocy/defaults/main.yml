@@ -1,0 +1,5 @@
+container_name: grocy
+
+url: "grocy.{{ host }}"
+
+ip_address: "{{ swag_base }}.2"

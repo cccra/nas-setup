@@ -7,10 +7,18 @@
     group: "{{ username }}"
     mode: 0644
 
+      #- name: Install the VPN config
+      #copy:
+      #src: "files/vpnconf.ovpn"
+      #dest: "{{ docker_dir }}/{{ container_name }}/config/openvpn/"
+      #owner: "{{ username }}"
+      #group: "{{ username }}"
+      #mode: 0644
+
 - name: Install the VPN config
   copy:
-    src: "files/vpnconf.ovpn"
-    dest: "{{ docker_dir }}/{{ container_name }}/config/openvpn/"
+    src: "files/wg0.conf"
+    dest: "{{ docker_dir }}/{{ container_name }}/config/wireguard/"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0644
@@ -31,10 +39,9 @@
     env:
       "VPN_ENABLED": "yes"
       "VPN_PROV": custom
-      "VPN_CLIENT": "openvpn"
+      "VPN_CLIENT": "wireguard"
       "ENABLE_PRIVOXY": "yes"
-      "VPN_USER": "{{ vpn_username }}"
-      "VPN_PASS": "{{ vpn_password }}"
+      "VPN_INPUT_PORTS": "49162"
       "NAME_SERVERS": "{{ ','.join(dns_nameservers) }}"
       "LAN_NETWORK": "172.20.0.0/16, {{ lan_network }}"
       "DELUGE_DAEMON_LOG_LEVEL": "info"

@@ -242,6 +242,13 @@
             - containers
         when: enable_navidrome | default(False)
 
+      - role: containers/media/navidrome
+        become: no
+        tags:
+            - navidrome
+            - containers
+        when: enable_navidrome | default(False)
+
       - role: containers/media/ombi
         become: no
         tags:
@@ -265,6 +272,27 @@
             - gitea
             - containers
         when: enable_gitea | default(False)
+
+      - role: containers/services/grocy
+        become: no
+        tags:
+            - grocy
+            - containers
+        when: enable_grocy | default(False)
+
+      - role: containers/services/invoiceninja
+        become: no
+        tags:
+            - invoiceninja
+            - containers
+        when: enable_invoiceninja | default(False)
+
+      - role: containers/services/paperless
+        become: no
+        tags:
+            - paperless
+            - containers
+        when: enable_paperless | default(False)
 
       - role: containers/services/nextcloud
         become: no

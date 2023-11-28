@@ -1,10 +1,14 @@
 ---
+- name: Create a ombi network
+  docker_network:
+    name: ombi_network
+
 - name: Make sure the {{ container_name }}-mysql container is created and running
   docker_container:
     name: ombi-mysql
     image: "mysql"
     networks:
-      - name: app_network
+      - name: ombi_network
     env:
       'MYSQL_ROOT_PASSWORD': '{{ mysql_root_password }}'
     volumes:
@@ -27,6 +31,7 @@
     pull: yes
     networks:
       - name: app_network
+      - name: ombi_network
     state: 'started'
     env:
       "PUID": "{{ guid }}"

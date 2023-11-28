@@ -1,0 +1,13 @@
+- name: Create Grocy container
+  docker_container:
+    name: grocy
+    image: lscr.io/linuxserver/grocy:latest
+    pull: true
+    networks:
+      - name: app_network
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/config:/config"
+    env:
+      USER_UID: "1000"
+      USER_GID: "1000"
+    restart_policy: unless-stopped

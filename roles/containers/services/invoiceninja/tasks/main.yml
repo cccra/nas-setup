@@ -1,0 +1,25 @@
+- name: Create InvoiceNinja container
+  docker_container:
+    name: invoiceninja
+    image: invoiceninja/invoiceninja
+    pull: true
+    networks:
+      - name: app_network
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/public:/var/app/public"
+      - "{{ docker_dir }}/{{ container_name }}/storage:/var/app/storage"
+    env:
+      USER_UID: "1000"
+      USER_GID: "1000"
+      APP_ENV: "production"
+      APP_DEBUG: "0"
+      APP_URL: "https://invoiceninja.gillick.xyz"
+      APP_KEY: "p9EsIoIMw4fX80H64ty7DUTE1UDS0YnviBd17uRfmaw="
+      APP_CIPHER: "AES-256-CBC"
+      DB_TYPE: "mysql"
+      DB_STRICT: "false"
+      DB_HOST: "localhost"
+      DB_DATABASE: "ninja"
+      DB_USERNAME: "ninja"
+      DB_PASSWORD: "ninja"
+    restart_policy: unless-stopped

@@ -202,6 +202,14 @@ enable_bazarr: false
 
 enable_gitea: false
 
+enable_grocy: false
+
+enable_trilium: false
+
+enable_invoiceninja: false
+
+enable_paperless: false
+
 enable_nextcloud: false
 
 enable_vaultwarden: false

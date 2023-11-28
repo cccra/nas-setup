@@ -6,6 +6,7 @@
     pull: yes
     networks:
       - name: app_network
+        ipv4_address: "{{ip_address}}"
     state: 'started'
     env:
       "PUID": "{{ guid }}"

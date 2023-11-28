@@ -11,6 +11,8 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
+      "ND_SPOTIFY_ID": "{{ spotify_id }}"
+      "ND_SPOTIFY_SECRET": "{{ spotify_secret }}"
     volumes:
       - "/etc/localtime:/etc/localtime"
       - "{{ docker_dir }}/{{ container_name }}:/data"

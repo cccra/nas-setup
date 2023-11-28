@@ -1,6 +1,4 @@
 ---
-- include_tasks: list_services.yml
-
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
@@ -13,11 +11,11 @@
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "UN_SONARR_0_URL": "http://{{ web_applications['sonarr']['ip_address'] }}:8989"
+      "UN_SONARR_0_URL": "http://172.20.0.40:8989"
       "UN_SONARR_0_API_KEY": "{{ sonarr_api }}"
-      "UN_RADARR_0_URL": "http://{{ web_applications['radarr']['ip_address'] }}:7878"
+      "UN_RADARR_0_URL": "http://172.20.0.41:7878"
       "UN_RADARR_0_API_KEY": "{{ radarr_api }}"
-      "UN_LIDARR_0_URL": "http://{{ web_applications['lidarr']['ip_address'] }}:8686"
+      "UN_LIDARR_0_URL": "http://172.20.0.42:8686"
       "UN_LIDARR_0_API_KEY": "{{ lidarr_api }}"
     volumes:
       - "/etc/localtime:/etc/localtime"
