@@ -66,6 +66,7 @@
     image: "ghcr.io/linuxserver/jellyfin:latest"
     networks:
       - name: app_network
+        ipv4_address: "{{ip_address}}"
     pull: true
     privileged: true
     device_requests:

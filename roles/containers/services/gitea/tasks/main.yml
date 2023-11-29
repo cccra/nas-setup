@@ -27,6 +27,7 @@
     networks:
       - name: gitea_network
       - name: app_network
+        ipv4_address: "{{ip_address}}"
     links:
       - gitea-mysql:gitea-mysql
     volumes:

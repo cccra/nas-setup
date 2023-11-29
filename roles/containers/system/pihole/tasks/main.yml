@@ -21,7 +21,7 @@
     hostname: "{{ inventory_hostname }}"
     networks:
       - name: app_network
-        ipv4_address: 172.20.0.20
+        ipv4_address: "{{ip_address}}"
     domainname: "{{ host }}"
     pull: false
     state: 'started'

@@ -30,6 +30,7 @@
     networks:
       - name: photoprism_network
       - name: app_network
+        ipv4_address: "{{ip_address}}"
     pull: yes
     security_opts:
       - seccomp:unconfined

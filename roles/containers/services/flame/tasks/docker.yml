@@ -5,6 +5,7 @@
     image: pawelmalak/flame:latest
     networks:
         - name: app_network
+        ipv4_address: "{{ip_address}}"
     pull: yes
     state: 'started'
     volumes:

@@ -31,6 +31,7 @@
     pull: yes
     networks:
       - name: app_network
+        ipv4_address: "{{ip_address}}"
       - name: ombi_network
     state: 'started'
     env:

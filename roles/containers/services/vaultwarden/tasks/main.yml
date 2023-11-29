@@ -6,6 +6,7 @@
     image: "vaultwarden/server"
     networks:
       - name: app_network
+        ipv4_address: "{{ip_address}}"
     pull: true
     state: 'started'
     env:
