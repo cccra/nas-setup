@@ -1,3 +1,5 @@
 - name: Create an internal macvlan network
   docker_network:
       name: app_network
+      ipam_config:
+        - subnet: "{{ swag_network }}"
