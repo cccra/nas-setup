@@ -6,7 +6,7 @@
 - name: Create a login user
   user:
     name: "{{ username }}"
-    password: "{{ password | password_hash('sha512') }}"
+    password: "{{ password | password_hash }}"
     groups:
       - "{{ sudo_group }}"
       - users
@@ -96,7 +96,7 @@
   user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
-    password: "{{ item.password | password_hash('sha512') }}"
+    password: "{{ item.password | password_hash }}"
     update_password: on_create
     state: present
     append: true
