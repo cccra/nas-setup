@@ -4,4 +4,4 @@ url: "photoprism.{{ host_local }}"
 
 dashboard_name: "PhotoPrism"
 
-ip_address: "{{ swag_base }}.29"
+ip_address: "{{ swag_base }}.21"

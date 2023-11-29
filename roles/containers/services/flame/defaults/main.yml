@@ -2,4 +2,4 @@ container_name: flame
 
 url: "flame.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.4"
+ip_address: "{{ swag_base }}.13"

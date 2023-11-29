@@ -5,4 +5,4 @@ url: "jackett.{{ host_local }}"
 
 dashboard_name: Jackett
 
-ip_address: "{{ swag_base }}.8"
+ip_address: "{{ swag_base }}.4"

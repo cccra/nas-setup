@@ -3,4 +3,4 @@ container_name: unpackerr
 
 url: "unpackerr.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.26"
+ip_address: "{{ swag_base }}.12"

@@ -5,4 +5,4 @@ url: "vaultwarden.{{ host }}"
 
 dashboard_name: Vaultwarden
 
-ip_address: "{{ swag_base }}.3"
+ip_address: "{{ swag_base }}.22"
