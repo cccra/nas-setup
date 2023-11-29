@@ -130,7 +130,7 @@
       delete: true
       recursive: yes
     delegate_to: "{{ inventory_hostname }}"
-    when: persistent_data_find.matched < 10 or not persistent_data.stat.exists
+    when: persistent_data_find.matched < 5 or not persistent_data.stat.exists
 
 # - name: Chmod the data folder
 #   become: yes
