@@ -244,7 +244,7 @@ enable_grafana: false
 
 enable_prometheus: false
 
-enable_node_exporter: true
+enable_node_exporter: false
 
 # Misc
 
