@@ -1,4 +1,3 @@
 ---
 container_name: nginx-proxy-manager
 
-ip_address: "{{ swag_base }}.24"

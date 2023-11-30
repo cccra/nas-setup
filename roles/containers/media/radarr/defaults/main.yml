@@ -3,4 +3,3 @@ container_name: radarr
 
 url: "radarr.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.10"

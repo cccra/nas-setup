@@ -3,4 +3,3 @@ container_name: lidarr
 
 url: "lidarr.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.6"

@@ -3,4 +3,3 @@ container_name: deluge
 
 url: "deluge.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.2"

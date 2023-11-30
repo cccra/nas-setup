@@ -3,4 +3,3 @@ container_name: jellyfin
 
 url: "jellyfin.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.5"

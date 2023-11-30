@@ -6,6 +6,4 @@ container_name: nextcloud
 
 url: "nextcloud.{{ host }}"
 
-ip_address: "{{ swag_base }}.18"
 
-ip_address_mysql: "{{ swag_base }}.19"

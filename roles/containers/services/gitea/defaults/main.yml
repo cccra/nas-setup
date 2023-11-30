@@ -6,6 +6,4 @@ container_name: gitea
 
 url: "gitea.{{ host }}"
 
-ip_address: "{{ swag_base }}.14"
 
-ip_address_mysql: "{{ swag_base }}.15"

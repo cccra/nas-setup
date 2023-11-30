@@ -1,6 +1,5 @@
 ---
 container_name: pihole
 
-ip_address: "{{ swag_base }}.23"
 
 url: "pi.hole:81"

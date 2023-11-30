@@ -5,7 +5,6 @@
     pull: true
     networks:
       - name: app_network
-        ipv4_address: "{{ip_address}}"
     volumes:
       - "{{ docker_dir }}/{{ container_name }}/config:/config"
     env:

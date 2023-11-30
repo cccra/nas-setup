@@ -9,7 +9,6 @@ server {
         {% include "nginx/cors.j2" %}
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
-        set $upstream_app {{ web_applications['flame']['ip_address'] }};
         set $upstream_port 5005;
         set $upstream_proto http;
         proxy_pass $upstream_proto://$upstream_app:$upstream_port;

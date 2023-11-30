@@ -3,6 +3,4 @@ container_name: ombi
 
 url: "request.{{ host_local }}"
 
-ip_address: "{{ swag_base }}.8"
 
-ip_address_mysql: "{{ swag_base }}.9"

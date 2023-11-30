@@ -16,7 +16,6 @@ server {
         add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, HEAD';
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
-        set $upstream_app {{ web_applications['jellyfin']['ip_address'] }};
         set $upstream_port 8096;
         set $upstream_proto http;
         proxy_pass $upstream_proto://$upstream_app:$upstream_port;
@@ -27,7 +26,6 @@ server {
     location ~ (/jellyfin)?/socket {
         include /config/nginx/proxy.conf;
         include /config/nginx/resolver.conf;
-        set $upstream_app {{ web_applications['jellyfin']['ip_address'] }};
         set $upstream_port 8096;
         set $upstream_proto http;
         proxy_pass $upstream_proto://$upstream_app:$upstream_port;

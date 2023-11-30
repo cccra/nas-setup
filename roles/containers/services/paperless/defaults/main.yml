@@ -2,4 +2,3 @@ container_name: paperless
 
 url: "paperless.{{ host }}"
 
-ip_address: "{{ swag_base }}.20"

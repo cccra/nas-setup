@@ -16,7 +16,6 @@
       state: 'started'
       networks:
           - name: adguard_macvlan
-            ipv4_address: '{{ ip_address }}'
       volumes:
           - '{{ docker_dir }}/{{ container_name }}/adguard/work:/opt/adguardhome/work'
           - '{{ docker_dir }}/{{ container_name }}/adguard/conf:/opt/adguardhome/conf'
