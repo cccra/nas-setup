@@ -2,7 +2,28 @@
 - name: Make sure the {{ container_name }} container is created and running
   docker_container:
     name: "{{ container_name }}"
-    image: "youegraillot/lidarr-on-steroids"
+    image: "lscr.io/linuxserver/lidarr:latest"
+    pull: yes
+    networks:
+      - name: app_network
+    state: 'started'
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "DOCKER_MODS": "linuxserver/mods:universal-docker"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/deemix:/config_deemix"
+      - "{{ mergerfs_root }}:/tank"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    restart_policy: unless-stopped
+
+- name: Make sure the Beets container is created and running
+  docker_container:
+    name: "beets"
+    image: "lscr.io/linuxserver/beets:latest"
     pull: yes
     networks:
       - name: app_network
@@ -13,7 +34,6 @@
       "TZ": "{{ timezone }}"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "{{ docker_dir }}/{{ container_name }}-on-steroids:/config"
-      - "{{ docker_dir }}/deemix:/config_deemix"
+      - "{{ docker_dir }}/beets:/config"
       - "{{ mergerfs_root }}:/tank"
     restart_policy: unless-stopped

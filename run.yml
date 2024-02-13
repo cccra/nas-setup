@@ -200,12 +200,20 @@
       #
       # Media
       #
+
       - role: containers/media/deluge
         become: no
         tags:
             - deluge
             - containers
         when: enable_deluge | default(False)
+
+      - role: containers/media/qbittorrent
+        become: no
+        tags:
+            - qbittorrent
+            - containers
+        when: enable_qbittorrent | default(False)
 
       - role: containers/media/sonarr
         become: no

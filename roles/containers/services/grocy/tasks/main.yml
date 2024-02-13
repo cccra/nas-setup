@@ -1,7 +1,7 @@
 - name: Create Grocy container
   docker_container:
     name: grocy
-    image: lscr.io/linuxserver/grocy:latest
+    image: linuxserver/grocy:latest
     pull: true
     networks:
       - name: app_network
