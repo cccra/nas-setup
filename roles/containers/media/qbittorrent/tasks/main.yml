@@ -1,0 +1,38 @@
+---
+- name: Install the VPN config
+  copy:
+    src: "files/wg0.conf"
+    dest: "{{ docker_dir }}/qbittorrent/config/wireguard/"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0644
+
+- name: Make sure the qbittorrent container is created and running
+  docker_container:
+    name: "qbittorrent"
+    image: "ghcr.io/hotio/qbittorrent:latest"
+    pull: yes
+    networks:
+      - name: app_network
+    sysctls:
+      "net.ipv4.conf.all.src_valid_mark": "1"
+      "net.ipv6.conf.all.disable_ipv6": "1"
+    capabilities:
+      - net_admin
+    state: 'started'
+    env:
+      "PRIVOXY_ENABLED": "yes"
+      "WEBUI_PORTS": "6017/udp,6017/tcp"
+      "VPN_ENABLED": "true"
+      "VPN_PROVIDER": "generic"
+      "VPN_CLIENT": "wireguard"
+      "VPN_LAN_NETWORK": "172.20.0.0/16, {{ lan_network }}"
+      "VPN_CONF": "wg0"
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+    volumes:
+      - "{{ docker_dir }}/qbittorrent/config:/config"
+      - "{{ mergerfs_root }}:/tank"
+      - "/etc/localtime:/etc/localtime:ro"
+    restart_policy: unless-stopped
