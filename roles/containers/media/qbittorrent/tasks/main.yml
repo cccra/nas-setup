@@ -10,28 +10,30 @@
 - name: Make sure the qbittorrent container is created and running
   docker_container:
     name: "qbittorrent"
-    image: "ghcr.io/hotio/qbittorrent:latest"
+    image: "binhex/arch-qbittorrentvpn:latest"
     pull: yes
     networks:
       - name: app_network
+    privileged: yes
     sysctls:
       "net.ipv4.conf.all.src_valid_mark": "1"
-      "net.ipv6.conf.all.disable_ipv6": "1"
     capabilities:
       - net_admin
     state: 'started'
     env:
-      "PRIVOXY_ENABLED": "yes"
-      "WEBUI_PORTS": "6017/udp,6017/tcp"
-      "VPN_ENABLED": "true"
-      "VPN_PROVIDER": "generic"
+      "WEBUI_PORT": "6017"
+      "VPN_ENABLED": "yes"
+      "VPN_PROV": "custom"
       "VPN_CLIENT": "wireguard"
-      "VPN_LAN_NETWORK": "172.20.0.0/16, {{ lan_network }}"
-      "VPN_CONF": "wg0"
+      "ENABLE_PRIVOXY": "yes"
+      "NAME_SERVERS": "{{ ','.join(dns_nameservers) }}"
+      "LAN_NETWORK": "172.20.0.0/16, {{ lan_network }}"
+      "UMASK": "000"
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
     volumes:
+      - "{{ docker_dir }}/qbittorrent/data:/data"
       - "{{ docker_dir }}/qbittorrent/config:/config"
       - "{{ mergerfs_root }}:/tank"
       - "/etc/localtime:/etc/localtime:ro"
