@@ -172,7 +172,7 @@
         tags:
           - adguardhome
           - containers
-        when: enable_adguardhome | default(False)
+        when: enable_adguard | default(False)
 
       #
       # Media

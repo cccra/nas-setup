@@ -194,6 +194,8 @@ enable_flame: false
 
 # Misc
 
+enable_adguard: true
+
 enable_watchtower: false
 
 enable_endlessh: false
