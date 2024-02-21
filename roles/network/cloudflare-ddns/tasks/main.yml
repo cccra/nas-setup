@@ -1,7 +1,7 @@
 ---
-- name: Make sure the {{ container_name }} container is created and running
+- name: Make sure the cloudflare-ddns container is created and running
   docker_container:
-    name: "{{ container_name }}"
+    name: "cloudflare-ddns"
     image: "oznu/cloudflare-ddns:latest"
     pull: yes
     state: 'started'
