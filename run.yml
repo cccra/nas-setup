@@ -174,13 +174,6 @@
             - watchtower
             - containers
 
-      - role: containers/system/pihole
-        become: no
-        tags:
-          - pihole
-          - containers
-        when: enable_pihole | default(False)
-
       - role: containers/system/adguard
         become: no
         tags:
