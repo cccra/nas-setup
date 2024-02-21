@@ -1,9 +1,0 @@
-
-    listen 443 ssl;
-    allow {{ lan_network }};
-		allow 192.168.1.0/24;
-    allow {{ vpn_network }};
-    allow {{ swag_network }};
-    deny all;
-    include /config/nginx/ssl.conf;
-    client_max_body_size 0;

@@ -1,0 +1,29 @@
+---
+- name: Create a adguard network
+  docker_network:
+    name: adguard_network
+    ipam_config:
+      - subnet: 11.0.0.0/27
+        gateway: 11.0.0.1
+
+- name: Make sure the {{ container_name }} container is created and running
+  docker_container:
+    name: 'adguardhome'
+    image: "adguard/adguardhome"
+    networks:
+      - name: adguard_network
+        ipv4_address: 11.0.0.2
+      - name: app_network
+    pull: false
+    state: 'started'
+    env:
+      "TZ": "{{ timezone }}"
+    volumes:
+      - "{{ docker_dir }}/{{ container_name }}/work:/opt/adguardhome/work"
+      - "{{ docker_dir }}/{{ container_name }}/conf:/opt/adguardhome/conf"
+    ports:
+      - "3000:3000/tcp"
+      - "85:80/tcp"
+      - "{{ lan_address }}:53:53/tcp"
+      - "{{ lan_address }}:53:53/udp"
+    restart_policy: unless-stopped

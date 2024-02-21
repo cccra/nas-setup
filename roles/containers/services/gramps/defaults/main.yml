@@ -1,0 +1,3 @@
+container_name: gramps
+
+url: "gramps.{{ host }}"

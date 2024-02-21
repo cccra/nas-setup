@@ -1,7 +1,0 @@
----
-container_name: jackett
-
-url: "jackett.{{ host_local }}"
-
-dashboard_name: Jackett
-

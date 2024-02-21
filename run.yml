@@ -88,15 +88,6 @@
             - crowdsec
         when: enable_crowdsec | default(False)
 
-      # #
-      # # Network
-      # #
-      # - role: network/swag
-      #   become: no
-      #   tags:
-      #       - swag
-      #       - containers
-
       - role: network/nginx-proxy-manager
         become: no
         tags:
@@ -116,13 +107,6 @@
             - cloudflare-ddns
             - containers
         when: enable_cloudflare_ddns | default(False)
-
-      - role: network/adguard
-        become: no
-        tags:
-            - adguard
-            - containers
-        when: enable_adguard | default(False)
 
       #
       - role: filesystems/hd-idle
@@ -156,12 +140,12 @@
       #
       # System
       #
-      - role: containers/media/jackett
+      - role: containers/media/prowlarr
         become: no
         tags:
-            - jackett
+            - prowlarr
             - containers
-        when: enable_jackett | default(False)
+        when: enable_prowlarr | default(False)
 
       - role: containers/media/flaresolverr
         become: no
@@ -197,16 +181,16 @@
           - containers
         when: enable_pihole | default(False)
 
+      - role: containers/system/adguard
+        become: no
+        tags:
+          - adguardhome
+          - containers
+        when: enable_adguardhome | default(False)
+
       #
       # Media
       #
-
-      - role: containers/media/deluge
-        become: no
-        tags:
-            - deluge
-            - containers
-        when: enable_deluge | default(False)
 
       - role: containers/media/qbittorrent
         become: no
@@ -257,12 +241,12 @@
             - containers
         when: enable_navidrome | default(False)
 
-      - role: containers/media/ombi
+      - role: containers/media/jellyseerr
         become: no
         tags:
-            - ombi
+            - jellyseerr
             - containers
-        when: enable_ombi | default(False)
+        when: enable_jellyseerr | default(False)
 
       #
       # Services
@@ -315,6 +299,13 @@
             - vaultwarden
             - containers
         when: enable_vaultwarden | default(False)
+
+      - role: containers/services/gramps
+        become: no
+        tags:
+            - gramps
+            - containers
+        when: enable_gramps | default(False)
 
       # #
       # # Samba

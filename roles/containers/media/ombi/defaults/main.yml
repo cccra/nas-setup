@@ -1,6 +1,0 @@
----
-container_name: ombi
-
-url: "request.{{ host_local }}"
-
-
