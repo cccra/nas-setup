@@ -9,4 +9,4 @@ secret.yml
 !/host_vars/.gitkeep
 !/group_vars/all/vars.yml
 mountsraspi
-roles/containers/media/deluge/files/vpnconf.ovpn
+files/wg0.conf
