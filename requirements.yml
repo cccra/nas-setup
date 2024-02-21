@@ -8,4 +8,3 @@ roles:
     - name: oefenweb.dns
     - name: notthebee.ubuntu_autoinstall
     - name: ironicbadger.snapraid
-    - name: linux-system-roles.cockpit
