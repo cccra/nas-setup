@@ -12,5 +12,5 @@
 - name: Install custom CSS
   template:
       src: custom.css.j2
-      dest: '{{ docker_dir }}/{{ container_name }}/custom.css'
+      dest: '{{ docker_dir }}/flame/custom.css'
       mode: '0755'

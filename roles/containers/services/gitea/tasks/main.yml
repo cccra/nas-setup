@@ -11,7 +11,7 @@
     networks:
       - name: gitea_network
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/mysql:/var/lib/mysql:rw"
+      - "{{ docker_dir }}/gitea/mysql:/var/lib/mysql:rw"
     env:
       MYSQL_DATABASE: "gitea"
       MYSQL_USER: "gitea"
@@ -30,7 +30,7 @@
     links:
       - gitea-mysql:gitea-mysql
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/data:/data"
+      - "{{ docker_dir }}/gitea/data:/data"
     ports:
       - "222:22"
     env:

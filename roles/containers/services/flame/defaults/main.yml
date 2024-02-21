@@ -1,4 +1,0 @@
-container_name: flame
-
-url: "flame.{{ host_local }}"
-

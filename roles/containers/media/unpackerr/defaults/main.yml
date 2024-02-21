@@ -1,5 +1,0 @@
----
-container_name: unpackerr
-
-url: "unpackerr.{{ host_local }}"
-

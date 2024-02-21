@@ -1,9 +1,0 @@
-mysql_db: "gitea_db"
-
-mysql_user: "gitea"
-
-container_name: gitea
-
-url: "gitea.{{ host }}"
-
-

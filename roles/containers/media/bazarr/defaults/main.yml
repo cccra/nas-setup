@@ -1,5 +1,0 @@
----
-container_name: bazarr
-
-url: "bazarr.{{ host_local }}"
-

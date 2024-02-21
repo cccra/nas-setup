@@ -1,7 +1,0 @@
----
-container_name: vaultwarden
-
-url: "vaultwarden.{{ host }}"
-
-dashboard_name: Vaultwarden
-

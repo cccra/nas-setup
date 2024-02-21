@@ -16,5 +16,5 @@
       LOG_FILE: "/data/vaultwarden.log"
       TZ: "{{ timezone }}"
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}:/data"
+      - "{{ docker_dir }}/vaultwarden:/data"
     restart_policy: unless-stopped

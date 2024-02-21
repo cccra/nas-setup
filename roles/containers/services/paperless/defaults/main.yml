@@ -1,4 +1,0 @@
-container_name: paperless
-
-url: "paperless.{{ host }}"
-

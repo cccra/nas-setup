@@ -1,7 +1,7 @@
 ---
 - name: Make sure the Flaresolverr container is created and running
   docker_container:
-    name: "{{ container_name }}"
+    name: "flaresolverr"
     image: "ghcr.io/flaresolverr/flaresolverr"
     pull: yes
     networks:
@@ -12,5 +12,5 @@
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/flaresolverr:/config"
     restart_policy: unless-stopped

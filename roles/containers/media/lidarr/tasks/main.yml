@@ -1,7 +1,7 @@
 ---
-- name: Make sure the {{ container_name }} container is created and running
+- name: Make sure the lidarr container is created and running
   docker_container:
-    name: "{{ container_name }}"
+    name: "lidarr"
     image: "lscr.io/linuxserver/lidarr:latest"
     pull: yes
     networks:
@@ -14,7 +14,7 @@
       "DOCKER_MODS": "linuxserver/mods:universal-docker"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "{{ docker_dir }}/{{ container_name }}:/config"
+      - "{{ docker_dir }}/lidarr:/config"
       - "{{ docker_dir }}/deemix:/config_deemix"
       - "{{ mergerfs_root }}:/tank"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"

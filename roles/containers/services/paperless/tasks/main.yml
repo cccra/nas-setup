@@ -6,8 +6,8 @@
     networks:
       - name: app_network
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/config:/config"
-      - "{{ docker_dir }}/{{ container_name }}/data:/data"
+      - "{{ docker_dir }}/paperless/config:/config"
+      - "{{ docker_dir }}/paperless/data:/data"
       - '{{ mergerfs_root }}/Nextcloud/{{ username }}/files/Documents/DOCUMENTS:/consume'
     env:
       PUID: "1000"

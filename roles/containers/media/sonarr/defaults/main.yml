@@ -1,5 +1,0 @@
----
-container_name: sonarr
-
-url: "sonarr.{{ host_local }}"
-

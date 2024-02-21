@@ -94,13 +94,6 @@
             - nginx-proxy-manager
             - containers
 
-      - role: network/wireguard
-        become: no
-        tags:
-            - wireguard
-            - containers
-        when: enable_wireguard | default(False)
-
       - role: network/cloudflare-ddns
         become: no
         tags:

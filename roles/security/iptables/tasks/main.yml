@@ -72,15 +72,6 @@
     comment: Ansible managed
   when: enable_ikev2 | default(False)
 
-- name: Allow Wireguard
-  iptables:
-    chain: INPUT
-    protocol: udp
-    destination_port: 51820
-    jump: ACCEPT
-    comment: Ansible managed
-  when: enable_wireguard | default(False)
-
 - name: Set the policy for the INPUT chain to DROP
   ansible.builtin.iptables:
     chain: INPUT

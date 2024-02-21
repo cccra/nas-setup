@@ -1,12 +1,4 @@
 ---
-- name: Chown the repo
-  file:
-      path: '/home/{{ username }}/.local/src/dotfiles'
-      recurse: yes
-      state: directory
-      owner: '{{ username }}'
-      group: '{{ username }}'
-
 - name: Clone the latest dotfiles repo
   become_user: '{{ username }}'
   git:
@@ -14,6 +6,14 @@
       dest: '/home/{{ username }}/.local/src/dotfiles'
       recursive: no
       force: yes
+
+- name: Chown the repo
+  file:
+      path: '/home/{{ username }}/.local/src/dotfiles'
+      recurse: yes
+      state: directory
+      owner: '{{ username }}'
+      group: '{{ username }}'
 
 - name: Create src dir
   file:
@@ -28,8 +28,6 @@
       cmd: stow -v */
       chdir: '/home/{{ username }}/.local/src/dotfiles'
   register: stow_result
-  notify:
-      - install and update nvim plugins
   changed_when: stow_result.stdout != ""
 
 - name: Create Zsh cache dir

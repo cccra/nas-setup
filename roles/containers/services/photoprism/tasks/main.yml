@@ -19,13 +19,13 @@
       "MYSQL_USER": "{{ mysql_user }}"
       "MYSQL_PASSWORD": "{{ mysql_password }}"
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/mariadb/mysql:/var/lib/mysql"
+      - "{{ docker_dir }}/photoprism/mariadb/mysql:/var/lib/mysql"
     restart_policy: unless-stopped
 
 
 - name: Make sure the Photoprism container is created and running
   docker_container:
-    name: "{{ container_name }}"
+    name: "photoprism"
     image: photoprism/photoprism:latest
     networks:
       - name: photoprism_network
@@ -71,7 +71,7 @@
       - "/dev/dri/renderD128:/dev/dri/renderD128" # Intel GPU
     volumes:
       - "{{ mergerfs_root }}/Nextcloud/{{ username }}/files/Photos:/photoprism/originals"
-      - "{{ docker_dir }}/{{ container_name }}/storage:/photoprism/storage"
+      - "{{ docker_dir }}/photoprism/storage:/photoprism/storage"
     restart_policy: unless-stopped
 
 - name: Schedule a library scan at 1 AM every day

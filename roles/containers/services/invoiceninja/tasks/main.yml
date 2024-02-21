@@ -6,8 +6,8 @@
     networks:
       - name: app_network
     volumes:
-      - "{{ docker_dir }}/{{ container_name }}/public:/var/app/public"
-      - "{{ docker_dir }}/{{ container_name }}/storage:/var/app/storage"
+      - "{{ docker_dir }}/invoiceninja/public:/var/app/public"
+      - "{{ docker_dir }}/invoiceninja/storage:/var/app/storage"
     env:
       USER_UID: "1000"
       USER_GID: "1000"
