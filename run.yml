@@ -2,7 +2,7 @@
 #
 # Tasks and roles for all hosts
 #
-- hosts: server
+- hosts: all
   gather_facts: no
 
   pre_tasks:
@@ -10,7 +10,7 @@
         tags:
             - port
 
-- hosts: server
+- hosts: all
   become: yes
 
   roles:
