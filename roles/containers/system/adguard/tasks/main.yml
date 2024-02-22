@@ -8,7 +8,7 @@
 
 - name: Make sure the adguard container is created and running
   docker_container:
-    name: 'adguardhome'
+    name: 'adguard'
     image: "adguard/adguardhome:latest"
     networks:
       - name: adguard_network
@@ -19,8 +19,8 @@
     env:
       "TZ": "{{ timezone }}"
     volumes:
-      - "{{ docker_dir }}/adguard/work:/opt/adguardhome/work"
-      - "{{ docker_dir }}/adguard/conf:/opt/adguardhome/conf"
+      - "{{ docker_dir }}/adguard/work:/opt/adguard/work"
+      - "{{ docker_dir }}/adguard/conf:/opt/adguard/conf"
     ports:
       - "{{ lan_address }}:53:53/tcp"
       - "{{ lan_address }}:53:53/udp"

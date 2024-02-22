@@ -159,7 +159,7 @@
       - role: containers/system/adguard
         become: no
         tags:
-          - adguardhome
+          - adguard
           - containers
         when: enable_adguard | default(False)
 
