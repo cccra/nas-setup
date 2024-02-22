@@ -7,7 +7,7 @@ brew install ansible
 
 Clone the repository:
 ```
-git clone https://github.com/notthebee/infra
+git clone https://github.com/cccra/nas-setup
 ```
 
 Create a host varialbe file and adjust the variables:
