@@ -1,0 +1,17 @@
+---
+- name: Make sure the Prowlarr container is created and running
+  docker_container:
+    name: "prowlarr"
+    image: "ghcr.io/linuxserver/prowlarr:latest"
+    pull: yes
+    networks:
+      - name: app_network
+    state: 'started'
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+    volumes:
+      - "/etc/localtime:/etc/localtime:ro"
+      - "{{ docker_dir }}/prowlarr:/config"
+    restart_policy: unless-stopped

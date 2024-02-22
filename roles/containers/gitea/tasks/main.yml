@@ -1,0 +1,47 @@
+---
+- name: Create a gitea network
+  docker_network:
+    name: gitea_network
+
+- name: Create MySQL container for Gitea
+  docker_container:
+    name: "gitea-mysql"
+    image: mysql:5.7
+    pull: true
+    networks:
+      - name: gitea_network
+    volumes:
+      - "{{ docker_dir }}/gitea/mysql:/var/lib/mysql:rw"
+    env:
+      MYSQL_DATABASE: "gitea"
+      MYSQL_USER: "gitea"
+      MYSQL_PASSWORD: "gitea"
+      MYSQL_ROOT_PASSWORD: "gitea"
+    restart_policy: unless-stopped
+
+- name: Create Gitea container
+  docker_container:
+    name: gitea
+    image: gitea/gitea:latest
+    pull: true
+    networks:
+      - name: gitea_network
+      - name: app_network
+    links:
+      - gitea-mysql:gitea-mysql
+    volumes:
+      - "{{ docker_dir }}/gitea/data:/data"
+    ports:
+      - "222:22"
+    env:
+      DB_TYPE: "mysql"
+      DB_HOST: "db:3306"
+      DB_NAME: "gitea"
+      DB_USER: "gitea"
+      DB_PASSWD: "gitea"
+      RUN_MODE: "prod"
+      USER_UID: "1000"
+      USER_GID: "1000"
+      DISABLE_REGISTRATION: "true"
+      DEFAULT_THEME: "arc-green"
+    restart_policy: unless-stopped

@@ -1,0 +1,16 @@
+---
+- name: Chmod the flame directory
+  become: true
+  file:
+      path: '{{ docker_dir }}/flame'
+      owner: '{{ username }}'
+      group: '{{ username }}'
+      mode: 0755
+      recurse: yes
+      state: directory
+
+- name: Install custom CSS
+  template:
+      src: custom.css.j2
+      dest: '{{ docker_dir }}/flame/custom.css'
+      mode: '0755'
