@@ -59,18 +59,7 @@
       - "443"
     jump: ACCEPT
     comment: Ansible managed
-  when: (enable_bunkerized_nginx | default(False)) or (enable_swag | default(False))
-
-- name: Allow IKEv2
-  iptables:
-    chain: INPUT
-    protocol: udp
-    destination_ports:
-      - "4500"
-      - "500"
-    jump: ACCEPT
-    comment: Ansible managed
-  when: enable_ikev2 | default(False)
+  when: enable_nginx-proxy-manager | default(False)
 
 - name: Set the policy for the INPUT chain to DROP
   ansible.builtin.iptables:

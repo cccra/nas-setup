@@ -123,6 +123,7 @@ enable_flame: false
 enable_adguard: false
 enable_watchtower: false
 enable_cloudflare_ddns: false
+enable_nginx-proxy-manager: false
 
 # Security
 enable_crowdsec: false
