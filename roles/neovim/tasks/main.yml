@@ -26,10 +26,10 @@
     recursive: no
     force: yes
 
-- name: Clone personal NvChad configs
-  become_user: '{{ username }}'
-  git:
-    repo: 'https://git.gillick.xyz/Gus/nvchad-config.git'
-    dest: '/home/{{ username }}/.config/nvim/lua/custom'
-    recursive: no
-    force: yes
+# - name: Clone personal NvChad configs
+#   become_user: '{{ username }}'
+#   git:
+#     repo: 'https://git.gillick.xyz/Gus/nvchad-config.git'
+#     dest: '/home/{{ username }}/.config/nvim/lua/custom'
+#     recursive: no
+#     force: yes
