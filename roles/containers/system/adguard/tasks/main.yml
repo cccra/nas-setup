@@ -9,7 +9,7 @@
 - name: Make sure the adguard container is created and running
   docker_container:
     name: 'adguardhome'
-    image: "adguard/adguardhome"
+    image: "adguard/adguardhome:latest"
     networks:
       - name: adguard_network
         ipv4_address: "{{ adguard_address }}"

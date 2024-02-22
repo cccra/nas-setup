@@ -2,7 +2,7 @@
 - name: Make sure the bazarr container is created and running
   docker_container:
     name: "bazarr"
-    image: "linuxserver/bazarr"
+    image: "linuxserver/bazarr:latest"
     pull: yes
     networks:
       - name: app_network

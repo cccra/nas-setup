@@ -1,7 +1,7 @@
 - name: Create InvoiceNinja container
   docker_container:
     name: invoiceninja
-    image: invoiceninja/invoiceninja
+    image: invoiceninja/invoiceninja:latest
     pull: true
     networks:
       - name: app_network
