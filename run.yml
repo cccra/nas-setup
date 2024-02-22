@@ -112,7 +112,7 @@
       #
       # Flame
       #
-      - role: containers/services/flame
+      - role: containers/flame
         become: no
         tags:
             - flame
@@ -122,41 +122,41 @@
       #
       # System
       #
-      - role: containers/media/prowlarr
+      - role: containers/prowlarr
         become: no
         tags:
             - prowlarr
             - containers
         when: enable_prowlarr | default(False)
 
-      - role: containers/media/flaresolverr
+      - role: containers/flaresolverr
         become: no
         tags:
           - flaresolverr
           - containers
         when: enable_flaresolverr | default(False)
 
-      - role: containers/media/unpackerr
+      - role: containers/unpackerr
         become: no
         tags:
             - unpackerr
             - containers
         when: enable_unpackerr | default(False)
 
-      - role: containers/media/bazarr
+      - role: containers/bazarr
         become: no
         tags:
             - bazarr
             - containers
         when: enable_bazarr | default(False)
 
-      - role: containers/system/watchtower
+      - role: containers/watchtower
         become: no
         tags:
             - watchtower
             - containers
 
-      - role: containers/system/adguard
+      - role: containers/adguard
         become: no
         tags:
           - adguard
@@ -167,56 +167,56 @@
       # Media
       #
 
-      - role: containers/media/qbittorrent
+      - role: containers/qbittorrent
         become: no
         tags:
             - qbittorrent
             - containers
         when: enable_qbittorrent | default(False)
 
-      - role: containers/media/sonarr
+      - role: containers/sonarr
         become: no
         tags:
             - sonarr
             - containers
         when: enable_sonarr | default(False)
 
-      - role: containers/media/radarr
+      - role: containers/radarr
         become: no
         tags:
             - radarr
             - containers
         when: enable_radarr | default(False)
 
-      - role: containers/media/lidarr
+      - role: containers/lidarr
         become: no
         tags:
             - lidarr
             - containers
         when: enable_lidarr | default(False)
 
-      - role: containers/media/jellyfin
+      - role: containers/jellyfin
         become: no
         tags:
             - jellyfin
             - containers
         when: enable_jellyfin | default(False)
 
-      - role: containers/media/navidrome
+      - role: containers/navidrome
         become: no
         tags:
             - navidrome
             - containers
         when: enable_navidrome | default(False)
 
-      - role: containers/media/navidrome
+      - role: containers/navidrome
         become: no
         tags:
             - navidrome
             - containers
         when: enable_navidrome | default(False)
 
-      - role: containers/media/jellyseerr
+      - role: containers/jellyseerr
         become: no
         tags:
             - jellyseerr
@@ -226,56 +226,56 @@
       #
       # Services
       #
-      - role: containers/services/photoprism
+      - role: containers/photoprism
         become: no
         tags:
             - photoprism
             - containers
         when: enable_photoprism | default(False)
 
-      - role: containers/services/gitea
+      - role: containers/gitea
         become: no
         tags:
             - gitea
             - containers
         when: enable_gitea | default(False)
 
-      - role: containers/services/grocy
+      - role: containers/grocy
         become: no
         tags:
             - grocy
             - containers
         when: enable_grocy | default(False)
 
-      - role: containers/services/invoiceninja
+      - role: containers/invoiceninja
         become: no
         tags:
             - invoiceninja
             - containers
         when: enable_invoiceninja | default(False)
 
-      - role: containers/services/paperless
+      - role: containers/paperless
         become: no
         tags:
             - paperless
             - containers
         when: enable_paperless | default(False)
 
-      - role: containers/services/nextcloud
+      - role: containers/nextcloud
         become: no
         tags:
             - nextcloud
             - containers
         when: enable_nextcloud | default(False)
 
-      - role: containers/services/vaultwarden
+      - role: containers/vaultwarden
         become: no
         tags:
             - vaultwarden
             - containers
         when: enable_vaultwarden | default(False)
 
-      - role: containers/services/gramps
+      - role: containers/gramps
         become: no
         tags:
             - gramps
