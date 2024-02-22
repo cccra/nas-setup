@@ -119,7 +119,7 @@ enable_paperless: false
 enable_nextcloud: false
 enable_vaultwarden: false
 enable_gramps: false
-enable_flame: false
+enable_homarr: false
 enable_adguard: false
 enable_watchtower: false
 enable_cloudflare_ddns: false
