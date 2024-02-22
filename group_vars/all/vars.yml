@@ -123,7 +123,7 @@ enable_homarr: false
 enable_adguard: false
 enable_watchtower: false
 enable_cloudflare_ddns: false
-enable_nginx-proxy-manager: false
+enable_nginxproxymanager: false
 
 # Security
 enable_crowdsec: false

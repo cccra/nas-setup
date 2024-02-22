@@ -59,7 +59,7 @@
       - "443"
     jump: ACCEPT
     comment: Ansible managed
-  when: enable_nginx-proxy-manager | default(False)
+  when: enable_nginxproxymanager | default(False)
 
 - name: Set the policy for the INPUT chain to DROP
   ansible.builtin.iptables:
