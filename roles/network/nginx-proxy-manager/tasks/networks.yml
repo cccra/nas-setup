@@ -1,3 +1,0 @@
-- name: Create an internal macvlan network
-  docker_network:
-      name: app_network
