@@ -19,8 +19,8 @@
     env:
       "TZ": "{{ timezone }}"
     volumes:
-      - "{{ docker_dir }}/adguard/work:/opt/adguard/work"
-      - "{{ docker_dir }}/adguard/conf:/opt/adguard/conf"
+      - "{{ docker_dir }}/adguard/work:/opt/adguardhome/work"
+      - "{{ docker_dir }}/adguard/conf:/opt/adguardhome/conf"
     ports:
       - "{{ lan_address }}:53:53/tcp"
       - "{{ lan_address }}:53:53/udp"
