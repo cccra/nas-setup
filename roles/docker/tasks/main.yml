@@ -78,9 +78,7 @@
   become: no
   find:
     paths:
-      - "roles/containers/media"
-      - "roles/containers/services"
-      - "roles/containers/system"
+      - "roles/containers"
     file_type: directory
     recurse: no
   register: containers
