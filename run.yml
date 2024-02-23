@@ -202,6 +202,13 @@
             - containers
         when: enable_jellyfin | default(False)
 
+      - role: containers/wizarr
+        become: no
+        tags:
+            - wizarr
+            - containers
+        when: enable_wizarr | default(False)
+
       - role: containers/navidrome
         become: no
         tags:

@@ -101,6 +101,7 @@ enable_nas_stuff: false
 # Containers
 
 enable_jellyfin: false
+enable_wizarr: false
 enable_navidrome: false
 enable_jellyseerr: false
 enable_photoprism: false
