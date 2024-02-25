@@ -82,6 +82,7 @@
         tags:
             - nginx-proxy-manager
             - containers
+        when: enable_nginxproxymanager | default(False)
 
       - role: network/cloudflare-ddns
         become: no

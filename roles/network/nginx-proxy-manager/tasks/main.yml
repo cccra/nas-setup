@@ -18,4 +18,3 @@
     volumes:
       - "{{ docker_dir }}/nginxproxymanager/data:/data"
       - "{{ docker_dir }}/nginxproxymanager/letsencrypt:/etc/letsencrypt"
-  when: enable_nginxproxymanager | default(False)
