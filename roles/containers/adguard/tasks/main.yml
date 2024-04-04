@@ -22,7 +22,7 @@
       - "{{ docker_dir }}/adguard/work:/opt/adguardhome/work"
       - "{{ docker_dir }}/adguard/conf:/opt/adguardhome/conf"
     ports:
-      - "3000:3000/tcp"
+      - "3030:3000/tcp"
       - "{{ lan_address }}:53:53/tcp"
       - "{{ lan_address }}:53:53/udp"
     restart_policy: unless-stopped
