@@ -5,7 +5,7 @@
   become: true
   package:
     name:
-      - "nvidia-driver-525"
+      - "nvidia-driver-545"
     state: latest
 
 - name: Add Nvidia GPG apt Key
