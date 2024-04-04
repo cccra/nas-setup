@@ -105,6 +105,7 @@ enable_wizarr: false
 enable_navidrome: false
 enable_jellyseerr: false
 enable_photoprism: false
+enable_immich: false
 enable_qbittorrent: false
 enable_sonarr: false
 enable_radarr: false

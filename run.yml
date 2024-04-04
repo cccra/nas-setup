@@ -241,6 +241,13 @@
             - containers
         when: enable_photoprism | default(False)
 
+      - role: containers/immich
+        become: no
+        tags:
+            - immich
+            - containers
+        when: enable_immich | default(False)
+
       - role: containers/gitea
         become: no
         tags:

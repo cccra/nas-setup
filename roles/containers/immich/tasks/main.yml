@@ -1,0 +1,58 @@
+---
+- name: Create an Immich network
+  docker_network:
+    name: immich_network
+
+- name: Make sure the Immich container is created and running
+  docker_container:
+    name: "immich"
+    image: ghcr.io/imagegenius/immich:latest
+    networks:
+      - name: immich_network
+      - name: app_network
+    pull: yes
+    state: 'started'
+    privileged: true
+    device_requests:
+      - driver: nvidia
+        count: -1
+        capabilities:
+          - gpu
+    env:
+      "PUID": "{{ guid }}"
+      "PGID": "{{ guid }}"
+      "TZ": "{{ timezone }}"
+      "DB_HOSTNAME": "immich-postgres"
+      "DB_USERNAME": "postgres"
+      "DB_PASSWORD": "postgres"
+      "DB_DATABASE_NAME": "immich"
+      "REDIS_HOSTNAME": "immich-redis"
+      "MACHINE_LEARNING_GPU_ACCELERATION": "cuda"
+    volumes:
+      - "{{ docker_dir }}/immich/config:/config"
+      - "{{ docker_dir }}/immich/photos:/photos"
+      # - "{{ mergerfs_root }}/Immich/photos:/photos"
+      - "{{ mergerfs_root }}/Nextcloud/{{ username }}/files/Photos:/import:ro"
+    restart_policy: unless-stopped
+
+- name: Make sure the Immich Redis container is created and running
+  docker_container:
+    name: "immich-redis"
+    image: redis
+    networks:
+      - name: immich_network
+    pull: yes
+    restart_policy: unless-stopped
+
+- name: Make sure the Immich Postgres container is created and running
+  docker_container:
+    name: "immich-postgres"
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
+    networks:
+      - name: immich_network
+    pull: yes
+    env:
+      "POSTGRES_USER": "postgres"
+      "POSTGRES_PASSWORD": "postgres"
+      "POSTGRES_DB": "immich"
+    restart_policy: unless-stopped
