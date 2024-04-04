@@ -116,6 +116,7 @@ enable_unpackerr: false
 enable_bazarr: false
 enable_gitea: false
 enable_grocy: false
+enable_linkwarden: false
 enable_invoiceninja: false
 enable_paperless: false
 enable_nextcloud: false

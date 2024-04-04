@@ -262,6 +262,13 @@
             - containers
         when: enable_grocy | default(False)
 
+      - role: containers/linkwarden
+        become: no
+        tags:
+            - linkwarden
+            - containers
+        when: enable_linkwarden | default(False)
+
       - role: containers/invoiceninja
         become: no
         tags:
