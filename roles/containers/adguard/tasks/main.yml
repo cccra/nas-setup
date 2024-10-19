@@ -14,7 +14,9 @@
       - name: adguard_network
         ipv4_address: "{{ adguard_address }}"
       - name: app_network
-    pull: false
+    pull: true
+    capabilities:
+      - net_admin
     state: 'started'
     env:
       "TZ": "{{ timezone }}"
@@ -23,6 +25,5 @@
       - "{{ docker_dir }}/adguard/conf:/opt/adguardhome/conf"
     ports:
       - "3030:3000/tcp"
-      - "{{ lan_address }}:53:53/tcp"
-      - "{{ lan_address }}:53:53/udp"
+      - "{{ lan_address }}:53:53"
     restart_policy: unless-stopped

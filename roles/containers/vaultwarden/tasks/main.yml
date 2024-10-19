@@ -9,7 +9,7 @@
     state: 'started'
     env:
       WEBSOCKET_ENABLED: "true"
-      INVITATIONS_ALLOWED: "false"
+      INVITATIONS_ALLOWED: "true"
       SIGNUPS_ALLOWED: "false"
       DOMAIN: "https://vaultwarden.{{ host }}"
       LOG_FILE: "/data/vaultwarden.log"

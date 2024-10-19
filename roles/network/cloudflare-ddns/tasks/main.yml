@@ -12,5 +12,5 @@
       "API_KEY": "{{ cloudflare_dns_token }}"
       "ZONE": "{{ host }}"
       "PROXIED": "false"
-      "SUBDOMAIN": "*"
+      # "SUBDOMAIN": "*"
     restart_policy: unless-stopped

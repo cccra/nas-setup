@@ -20,6 +20,8 @@
     capabilities:
       - net_admin
     state: 'started'
+    ports:
+      - "8118:8118"
     env:
       "WEBUI_PORT": "6017"
       "VPN_ENABLED": "yes"

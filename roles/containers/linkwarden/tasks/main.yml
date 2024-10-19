@@ -15,6 +15,7 @@
     env:
       "NEXTAUTH_SECRET": "choosing-profane-arose"
       "DATABASE_URL": "postgresql://linkwarden:ascent-levitator-basically@linkwarden-postgres:5432/linkwarden"
+      "NEXT_PUBLIC_DISABLE_REGISTRATION": "false"
     volumes:
         - '{{ docker_dir }}/linkwarden/data:/data/data'
     restart_policy: unless-stopped

@@ -1,3 +1,24 @@
+---
+- name: Create an invoiceninja network
+  docker_network:
+    name: invoiceninja_network
+
+- name: Create MySQL container for invoiceninja
+  docker_container:
+    name: "invoiceninja-mysql"
+    image: mysql:5.7
+    pull: true
+    networks:
+      - name: invoiceninja_network
+    volumes:
+      - "{{ docker_dir }}/invoiceninja/mysql:/var/lib/mysql:rw"
+    env:
+      MYSQL_DATABASE: "invoiceninja"
+      MYSQL_USER: "invoiceninja"
+      MYSQL_PASSWORD: "invoiceninja"
+      MYSQL_ROOT_PASSWORD: "invoiceninja"
+    restart_policy: unless-stopped
+
 - name: Create InvoiceNinja container
   docker_container:
     name: invoiceninja
@@ -5,6 +26,7 @@
     pull: true
     networks:
       - name: app_network
+      - name: invoiceninja_network
     volumes:
       - "{{ docker_dir }}/invoiceninja/public:/var/app/public"
       - "{{ docker_dir }}/invoiceninja/storage:/var/app/storage"
@@ -18,8 +40,8 @@
       APP_CIPHER: "AES-256-CBC"
       DB_TYPE: "mysql"
       DB_STRICT: "false"
-      DB_HOST: "localhost"
-      DB_DATABASE: "ninja"
-      DB_USERNAME: "ninja"
-      DB_PASSWORD: "ninja"
+      DB_HOST: "invoiceninja-mysql"
+      DB_DATABASE: "invoiceninja"
+      DB_USERNAME: "invoiceninja"
+      DB_PASSWORD: "invoiceninja"
     restart_policy: unless-stopped

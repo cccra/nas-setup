@@ -151,6 +151,13 @@
             - containers
         when: enable_bazarr | default(False)
 
+      - role: containers/tdarr
+        become: no
+        tags:
+            - tdarr
+            - containers
+        when: enable_tdarr | default(False)
+
       - role: containers/watchtower
         become: no
         tags:
@@ -163,6 +170,13 @@
           - adguard
           - containers
         when: enable_adguard | default(False)
+
+      - role: containers/dashdot
+        become: no
+        tags:
+            - dashdot
+            - containers
+        when: enable_dashdot | default(False)
 
       #
       # Media
@@ -262,12 +276,12 @@
             - containers
         when: enable_grocy | default(False)
 
-      - role: containers/linkwarden
+      - role: containers/linkding
         become: no
         tags:
-            - linkwarden
+            - linkding
             - containers
-        when: enable_linkwarden | default(False)
+        when: enable_linkding | default(False)
 
       - role: containers/invoiceninja
         become: no
@@ -303,6 +317,13 @@
             - gramps
             - containers
         when: enable_gramps | default(False)
+
+      - role: containers/wireguard
+        become: no
+        tags:
+            - wireguard
+            - containers
+        when: enable_wireguard | default(False)
 
       # #
       # # Samba

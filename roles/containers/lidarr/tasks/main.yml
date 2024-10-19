@@ -7,17 +7,18 @@
     networks:
       - name: app_network
     state: 'started'
+    ports:
+      - "8686:8686"
     env:
       "PUID": "{{ guid }}"
       "PGID": "{{ guid }}"
       "TZ": "{{ timezone }}"
-      "DOCKER_MODS": "linuxserver/mods:universal-docker"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
-      - "{{ docker_dir }}/lidarr:/config"
-      - "{{ docker_dir }}/deemix:/config_deemix"
+      - "{{ docker_dir }}/lidarr/config:/config"
+      - "{{ docker_dir }}/lidarr/custom-services.d:/custom-services.d"
+      - "{{ docker_dir }}/lidarr/custom-cont-init.d:/custom-cont-init.d"
       - "{{ mergerfs_root }}:/tank"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart_policy: unless-stopped
 
 - name: Schedule a RSgain scan at 2 AM every day
